@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_sport">
+
+    <fragment
+        android:id="@+id/nav_sport"
+        android:name="com.example.sportspal.ui.Sport.SportFragment"
+        android:label="@string/menu_sport"
+        tools:layout="@layout/fragment_athlete">
+        <action
+            android:id="@+id/action_nav_sport_to_info_sport"
+            app:destination="@id/info_sport" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_athlete"
+        android:name="com.example.sportspal.ui.Athlete.AthleteFragment"
+        android:label="@string/menu_athlete"
+        tools:layout="@layout/fragment_sport" />
+
+    <fragment
+        android:id="@+id/nav_team"
+        android:name="com.example.sportspal.ui.Team.TeamFragment"
+        android:label="@string/menu_team"
+        tools:layout="@layout/fragment_team" />
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.sportspal.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/add_sport"
+        android:name="com.example.sportspal.ui.Sport.AddSport"
+        android:label="Add Sport"
+        tools:layout="@layout/fragment_add_sport" />
+    <fragment
+        android:id="@+id/info_sport"
+        android:name="com.example.sportspal.ui.Sport.InfoSport"
+        android:label="Sport Info"
+        tools:layout="@layout/fragment_info_sport">
+        <argument
+            android:name="sport_name"
+            app:argType="string" />
+        <argument
+            android:name="sport_type"
+            app:argType="string" />
+        <argument
+            android:name="sport_gender"
+            app:argType="string" />
+        <argument
+            android:name="sport_id"
+            app:argType="integer" />
+    </fragment>
+</navigation>
