@@ -9,7 +9,7 @@
         android:id="@+id/nav_sport"
         android:name="com.example.sportspal.ui.Sport.SportFragment"
         android:label="@string/menu_sport"
-        tools:layout="@layout/fragment_athlete">
+        tools:layout="@layout/fragment_sport">
         <action
             android:id="@+id/action_nav_sport_to_info_sport"
             app:destination="@id/info_sport" />
@@ -19,7 +19,7 @@
         android:id="@+id/nav_athlete"
         android:name="com.example.sportspal.ui.Athlete.AthleteFragment"
         android:label="@string/menu_athlete"
-        tools:layout="@layout/fragment_sport" />
+        tools:layout="@layout/fragment_athlete" />
 
     <fragment
         android:id="@+id/nav_team"
