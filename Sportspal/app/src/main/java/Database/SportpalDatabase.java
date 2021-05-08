@@ -55,10 +55,12 @@ public abstract class SportpalDatabase extends RoomDatabase {
     private static class PopulateDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
         private SportDao sportDao;
         private AthleteDao athleteDao;
+        private TeamDao teamDao;
 
         private PopulateDatabaseAsyncTask(SportpalDatabase db) {
             sportDao = db.sportDao();
             athleteDao = db.athleteDao();
+            teamDao = db.teamDao();
         }
 
         @Override
@@ -82,6 +84,14 @@ public abstract class SportpalDatabase extends RoomDatabase {
                     "none",
                     1,
                     1999));
+            teamDao.insertTeam(new Team(1,
+                    "Gamers",
+                    "Mum's Basement",
+                    "Thessalonike",
+                    "Hellas",
+                    1,
+                    1969
+                    ));
             return null;
         }
     }
