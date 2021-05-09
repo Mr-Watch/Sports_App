@@ -28,7 +28,7 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
 
     private AthleteViewModel athleteViewModel;
     private AthleteAdapter athleteAdapter;
-    private FloatingActionButton fab;
+    private FloatingActionButton fab1;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,8 +36,8 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
         athleteViewModel =
                 new ViewModelProvider(this).get(AthleteViewModel.class);
         View root = inflater.inflate(R.layout.fragment_athlete, container, false);
-        fab = root.findViewById(R.id.athlete_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab1 = root.findViewById(R.id.athlete_fab);
+        fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.add_athlete);
