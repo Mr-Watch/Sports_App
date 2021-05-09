@@ -17,7 +17,7 @@ import Database.Classes.Team;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
     final private ListItemClickListener mOnClickListener;
-    private List<Team> sports = new ArrayList<>();
+    private List<Team> teams = new ArrayList<>();
 
     public TeamAdapter(ListItemClickListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
@@ -27,28 +27,28 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
     @Override
     public TeamHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.sport_recyclerview_item, parent, false);
+                .inflate(R.layout.team_recyclerview_item, parent, false);
         return new TeamHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TeamHolder holder, int position) {
-        Team currentTeam = sports.get(position);
+        Team currentTeam = teams.get(position);
         holder.textViewTeamName.setText(currentTeam.getTeamName());
-        holder.textViewTeamGender.setText(currentTeam.getTeamFieldName()); //getTeamFieldName() needs to change to correct value
+        holder.textViewTeamCity.setText(currentTeam.getTeamCity());
     }
 
     @Override
     public int getItemCount() {
-        return sports.size();
+        return teams.size();
     }
 
     public Team getTeam(int position) {
-        return sports.get(position);
+        return teams.get(position);
     }
 
-    public void setTeams(List<Team> sports) {
-        this.sports = sports;
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
         notifyDataSetChanged();
     }
 
@@ -58,12 +58,12 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
 
     class TeamHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView textViewTeamName;
-        private TextView textViewTeamGender;
+        private TextView textViewTeamCity;
 
         public TeamHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTeamName = itemView.findViewById(R.id.sport_name_recyclerView);
-            textViewTeamGender = itemView.findViewById(R.id.sport_gender_recyclerView);
+            textViewTeamName = itemView.findViewById(R.id.team_name_recyclerView);
+            textViewTeamCity = itemView.findViewById(R.id.team_city_recyclerView);
             itemView.setOnClickListener(this);
         }
 

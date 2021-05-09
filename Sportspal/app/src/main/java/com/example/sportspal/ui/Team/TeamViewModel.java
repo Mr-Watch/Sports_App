@@ -1,6 +1,8 @@
 package com.example.sportspal.ui.Team;
 
 import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,12 +12,12 @@ import java.util.List;
 import Database.Classes.Team;
 import Repositories.TeamsRepository;
 
-public class TeamViewModel extends ViewModel {
+public class TeamViewModel extends AndroidViewModel {
     private TeamsRepository mRepository;
     private LiveData<List<Team>> mTeams;
 
     public TeamViewModel(Application application) {
-        super(); //application?
+        super(application);
         mRepository = new TeamsRepository(application);
         mTeams = mRepository.getAllTeams();
     }
