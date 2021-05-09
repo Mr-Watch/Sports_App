@@ -5,6 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_sport">
 
+
     <fragment
         android:id="@+id/nav_sport"
         android:name="com.example.sportspal.ui.Sport.SportFragment"
@@ -19,7 +20,12 @@
         android:id="@+id/nav_athlete"
         android:name="com.example.sportspal.ui.Athlete.AthleteFragment"
         android:label="@string/menu_athlete"
-        tools:layout="@layout/fragment_athlete" />
+        tools:layout="@layout/fragment_athlete" >
+        <action
+            android:id="@+id/action_nav_athlete_to_info_athlete"
+            app:destination="@id/info_athlete" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_team"
@@ -34,6 +40,11 @@
     <fragment
         android:id="@+id/add_sport"
         android:name="com.example.sportspal.ui.Sport.AddSport"
+        android:label="Add Sport"
+        tools:layout="@layout/fragment_add_sport" />
+    <fragment
+        android:id="@+id/add_athlete"
+        android:name="com.example.sportspal.ui.Athlete.AddAthlete"
         android:label="Add Sport"
         tools:layout="@layout/fragment_add_sport" />
     <fragment
@@ -54,4 +65,30 @@
             android:name="sport_id"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/info_athlete"
+        android:name="com.example.sportspal.ui.Athlete.InfoAthlete"
+        android:label="Athlete Info"
+        tools:layout="@layout/fragment_info_athlete">
+        <argument
+            android:name="athlete_first_name"
+            app:argType="string" />
+        <argument
+            android:name="athlete_surname"
+            app:argType="string" />
+        <argument
+            android:name="athlete_id"
+            app:argType="integer" />
+        <argument
+            android:name="athlete_country"
+            app:argType="string" />
+
+        <argument
+            android:name="athlete_city"
+            app:argType="string" />
+        <argument
+            android:name="athlete_birth_year"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>
