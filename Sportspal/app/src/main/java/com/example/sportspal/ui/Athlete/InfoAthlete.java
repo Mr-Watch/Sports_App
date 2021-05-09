@@ -16,8 +16,9 @@ import com.example.sportspal.R;
 import com.example.sportspal.ui.Sport.SportViewModel;
 
 import Database.Classes.Athlete;
+import Database.Classes.Sport;
 
-public class InfoAthlete extends Fragment{
+public class InfoAthlete extends Fragment {
     private View root;
     private TextView athlete_firstname_textView;
     private TextView athlete_id_textView;
@@ -32,7 +33,7 @@ public class InfoAthlete extends Fragment{
 
     private AthleteViewModel model;
 
-    public InfoAthlete(){
+    public InfoAthlete() {
 
 
     }
@@ -67,4 +68,35 @@ public class InfoAthlete extends Fragment{
         athlete_city_textView = root.findViewById(R.id.athlete_city_textView);
         athlete_country_textView = root.findViewById(R.id.athlete_country_textView);
         athlete_sport_id_textView = root.findViewById(R.id.athlete_sport_id_textView);
+
+        athlete_firstname_textView.setText(getArguments().getString("athlete_first_name"));
+        athlete_id_textView.setText(Integer.toString(getArguments().getInt("athlete_id")));
+        athlete_surname_textView.setText(getArguments().getString("athleteSurname"));
+        athlete_city_textView.setText(getArguments().getString("athlete_city"));
+        athlete_country_textView.setText(getArguments().getString("athlete_country"));
+        athlete_sport_id_textView.setText(Integer.toString(getArguments().getInt("athlete_sport_id")));
+        athlete_birth_year_textView.setText(Integer.toString(getArguments().getInt("athlete_birth_year")));
+
+        return root;
+    }
+
+    private void updateAthleteFromDatabaseFromDatabase(View v) {
+        Navigation.findNavController(v).navigate(R.id.add_athlete, getArguments());
+    }
+
+    private void deleteAthleteFromDataBase() {
+        Athlete athlete = new Athlete(
+                getArguments().getInt("sport_id"),
+                getArguments().getString("athlete_first_name"),
+                getArguments().getString("athleteSurname"),
+                getArguments().getString("athlete_city"),
+                getArguments().getString("athlete_country"),
+                getArguments().getInt("athlete_sport_id"),
+                getArguments().getInt("athlete_birth_year")
+        );
+        model.deleteAthletes(athlete);
+
+        Toast.makeText(getContext(), "Athlete Removed", Toast.LENGTH_SHORT).show();
+    }
+
 }
