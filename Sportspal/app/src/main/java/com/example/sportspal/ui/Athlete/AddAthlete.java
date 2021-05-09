@@ -43,7 +43,7 @@ public class AddAthlete extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_add_sport, container, false);
         addAthlete = root.findViewById(R.id.add_athlete_button);
-        athlete_id_textField = root.findViewById(R.id.sport_id_textField);
+        athlete_id_textField = root.findViewById(R.id.athlete_id_textField);
         athlete_firstname_textField = root.findViewById(R.id.athlete_firstname_textField);
         athlete_surname_textField = root.findViewById(R.id.athlete_surname_textField);
         athlete_city_textField = root.findViewById(R.id.athlete_city_textField);
