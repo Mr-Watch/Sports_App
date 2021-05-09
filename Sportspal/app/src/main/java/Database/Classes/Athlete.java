@@ -19,7 +19,7 @@ public class Athlete {
     private int athleteId;
     @ColumnInfo(name = "athlete_first_name")
     private String athleteFirstName;
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "athlete_surname")
     private String athleteSurname;
     @ColumnInfo(name = "athlete_city")
     private String athleteCity;

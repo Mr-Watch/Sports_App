@@ -30,7 +30,7 @@
             android:layout_marginLeft="40dp"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="@string/athlete_surname_name"
+            android:text="@string/athlete_surname"
             android:textSize="18sp"
             android:textStyle="bold"
             android:typeface="monospace" />

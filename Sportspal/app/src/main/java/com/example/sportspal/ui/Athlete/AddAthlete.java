@@ -14,10 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Sport.SportViewModel;
+import com.example.sportspal.ui.Athlete.AthleteViewModel;
 
 import Database.Classes.Athlete;
-import Database.Classes.Sport;
+
 
 public class AddAthlete extends Fragment {
 

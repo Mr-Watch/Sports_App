@@ -12,18 +12,18 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import Database.Classes.Athlete;
-import Database.Classes.Sport;
-import Repositories.SportRepository;
+
+import Repositories.AthleteRepository;
 
 public class AthleteViewModel extends AndroidViewModel {
-    private SportRepository mRepository;
+    private AthleteRepository mRepository;
     private LiveData<List<Athlete>> mAthletes;
 
 
 
     public AthleteViewModel(Application application1) {
         super(application1);
-        mRepository = new SportRepository(application1);
+        mRepository = new AthleteRepository(application1);
         mAthletes = mRepository.getAllAthletes();
     }
 
@@ -32,15 +32,15 @@ public class AthleteViewModel extends AndroidViewModel {
     }
 
     public void insertAthletes(Athlete... athletes) {
-        mRepository.insertAthletes(athletes);
+        mRepository.insertAthlete(athletes);
     }
 
     public void deleteAthletes(Athlete... athletes) {
-        mRepository.deleteAthletes(athletes);
+        mRepository.deleteAthlete(athletes);
     }
 
     public void updateAthletes(Athlete... athletes) {
-        mRepository.updateAthletes(athletes);
+        mRepository.updateAthlete(athletes);
     }
 
 }

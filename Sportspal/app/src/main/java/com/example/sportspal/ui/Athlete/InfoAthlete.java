@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Sport.SportViewModel;
+import com.example.sportspal.ui.Athlete.AthleteViewModel;
 
 import Database.Classes.Athlete;
-import Database.Classes.Sport;
+
 
 public class InfoAthlete extends Fragment {
     private View root;
@@ -68,6 +68,7 @@ public class InfoAthlete extends Fragment {
         athlete_city_textView = root.findViewById(R.id.athlete_city_textView);
         athlete_country_textView = root.findViewById(R.id.athlete_country_textView);
         athlete_sport_id_textView = root.findViewById(R.id.athlete_sport_id_textView);
+        athlete_birth_year_textView = root.findViewById(R.id.athlete_birth_year_textView);
 
         athlete_firstname_textView.setText(getArguments().getString("athlete_first_name"));
         athlete_id_textView.setText(Integer.toString(getArguments().getInt("athlete_id")));
@@ -80,7 +81,7 @@ public class InfoAthlete extends Fragment {
         return root;
     }
 
-    private void updateAthleteFromDatabaseFromDatabase(View v) {
+    private void updateAthleteFromDatabase(View v) {
         Navigation.findNavController(v).navigate(R.id.add_athlete, getArguments());
     }
 
