@@ -37,7 +37,7 @@ public class TeamFragment extends Fragment implements TeamAdapter.ListItemClickL
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.add_sport);//need changing
+                Navigation.findNavController(v).navigate(R.id.add_team);
             }
         });
         RecyclerView teamRecyclerView = root.findViewById(R.id.team_recyclerview);

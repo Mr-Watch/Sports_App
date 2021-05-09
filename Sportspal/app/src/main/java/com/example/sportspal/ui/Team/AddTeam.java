@@ -39,7 +39,7 @@ public class AddTeam extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View root = inflater.inflate(R.layout.fragment_add_sport, container, false);
+        View root = inflater.inflate(R.layout.fragment_add_team, container, false);
         addTeam = root.findViewById(R.id.add_team_button);
         team_id_textField = root.findViewById(R.id.team_id_textField);
         team_name_textField = root.findViewById(R.id.team_name_textField);
