@@ -18,4 +18,7 @@
     <string name="logo">Logo</string>
     <string name="sport_name">Baseball</string>
     <string name="sport_gender">Male</string>
+    <string name="athlete_first_name">jon</string>
+    <string name="athlete_surname">doe</string>
+    <string name="athlete_country">greece</string>
 </resources>

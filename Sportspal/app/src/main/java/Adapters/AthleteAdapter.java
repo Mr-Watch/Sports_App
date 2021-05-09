@@ -35,9 +35,10 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteH
 
     @Override
     public void onBindViewHolder(@NonNull AthleteHolder holder, int position) {
-        Athlete currentSport = athletes.get(position);
-        holder.textViewSportName.setText(currentSport.getAthleteFirstName());
-        holder.textViewSportGender.setText(currentSport.getAthlete);
+        Athlete currentAthlete = athletes.get(position);
+        holder.textViewAthleteName.setText(currentAthlete.getAthleteFirstName());
+        holder.textViewAthleteSurname.setText(currentAthlete.getAthleteSurname());
+        holder.textViewCountry.setText(currentAthlete.getAthleteCountry());
     }
 
     @Override
@@ -59,13 +60,15 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteH
     }
 
     class AthleteHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView textViewSportName;
-        private TextView textViewSportGender;
+        private TextView textViewAthleteName;
+        private TextView textViewAthleteSurname;
+        private TextView textViewCountry;
 
         public AthleteHolder (@NonNull View itemView) {
             super(itemView);
-            textViewSportName = itemView.findViewById(R.id.sport_name_recyclerView);
-            textViewSportGender = itemView.findViewById(R.id.sport_gender_recyclerView);
+            textViewAthleteName = itemView.findViewById(R.id.athlete_firstname_recyclerView);
+            textViewAthleteSurname = itemView.findViewById(R.id.athlete_surname_recyclerView);
+            textViewCountry = itemView.findViewById(R.id.athlete_country_recyclerView);
             itemView.setOnClickListener(this);
         }
 

@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.Athlete.AthleteFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/athlete_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/athlete_recyclerview_item" />
+
     <TextView
         android:id="@+id/text_athlete"
         android:layout_width="match_parent"
