@@ -78,7 +78,7 @@ public class InfoTeam extends Fragment{
     }
 
     private void updateTeamFromDatabase(View v) {
-        Navigation.findNavController(v).navigate(R.id.add_sport, getArguments());//needs changing
+        Navigation.findNavController(v).navigate(R.id.add_team, getArguments());//needs changing
     }
 
     private void deleteTeamFromDataBase() {

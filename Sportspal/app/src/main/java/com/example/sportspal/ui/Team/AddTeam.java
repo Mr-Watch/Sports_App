@@ -71,7 +71,6 @@ public class AddTeam extends Fragment{
             team_country_textField.setText(getArguments().getString("team_country"));
             team_sport_id_textField.setEnabled(false);
             team_sport_id_textField.setText(Integer.toString(getArguments().getInt("team_sport_id")));
-            team_birth_year_textField.setEnabled(false);
             team_birth_year_textField.setText(Integer.toString(getArguments().getInt("team_birth_year")));
 
             addTeam.setText("Update");

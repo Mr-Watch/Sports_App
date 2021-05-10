@@ -35,7 +35,7 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
                              ViewGroup container, Bundle savedInstanceState) {
         athleteViewModel =
                 new ViewModelProvider(this).get(AthleteViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_athlete, container, false);
+        root = inflater.inflate(R.layout.fragment_athlete, container, false);
         fab1 = root.findViewById(R.id.athlete_fab);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,13 +64,13 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
     public void onListItemClick(int position) {
         Athlete athlete = athleteAdapter.getAthlete(position);
         Bundle bundle = new Bundle();
-        bundle.putString("athlete_firstname", athlete.getAthleteFirstName());
+        bundle.putString("athlete_first_name", athlete.getAthleteFirstName());
         bundle.putInt("athlete_id", athlete.getAthleteId());
         bundle.putString("athlete_surname", athlete.getAthleteSurname());
         bundle.putString("athlete_city", athlete.getAthleteCity());
-        bundle.putString("athlete_Country", athlete.getAthleteCountry());
+        bundle.putString("athlete_country", athlete.getAthleteCountry());
         bundle.putInt("athlete_birth_year", athlete.getAthleteBirthYear());
-        bundle.putInt("athlete_city", athlete.getAthleteSportId());
+        bundle.putInt("athlete_sport_id", athlete.getAthleteSportId());
         Navigation.findNavController(root).navigate(R.id.info_athlete, bundle);
     }
 }

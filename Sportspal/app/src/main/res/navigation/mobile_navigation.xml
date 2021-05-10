@@ -121,7 +121,7 @@
             android:name="team_sport_id"
             app:argType="integer" />
         <argument
-            android:name="athlete_birth_year"
+            android:name="team_birth_year"
             app:argType="integer" />
     </fragment>
 

@@ -65,33 +65,14 @@ public abstract class SportpalDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            sportDao.insertSports(new Sport(1,
-                    "Football",
-                    "Team",
-                    "Male"));
-            sportDao.insertSports(new Sport(2,
-                    "Baseball",
-                    "Single Player",
-                    "Female"));
-            sportDao.insertSports(new Sport(3,
-                    "Volley",
-                    "Team",
-                    "Male"));
-            athleteDao.insertAthlete(new Athlete(1,
-                    "help",
-                    "me",
-                    "nowhere",
-                    "none",
-                    1,
-                    1999));
-            teamDao.insertTeam(new Team(1,
-                    "Gamers",
-                    "Mum's Basement",
-                    "Thessalonike",
-                    "Hellas",
-                    1,
-                    1969
-                    ));
+            DatabaseObjectGenerator generator = new DatabaseObjectGenerator(
+                    10,
+                    20,
+                    15);
+            generator.generateObjects();
+            sportDao.insertSports(generator.getGeneratedSports());
+            athleteDao.insertAthlete(generator.getGeneratedAthletes());
+            teamDao.insertTeam(generator.getGeneratedTeams());
             return null;
         }
     }

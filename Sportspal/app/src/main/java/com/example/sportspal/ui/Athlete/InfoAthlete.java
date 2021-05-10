@@ -72,7 +72,7 @@ public class InfoAthlete extends Fragment {
 
         athlete_firstname_textView.setText(getArguments().getString("athlete_first_name"));
         athlete_id_textView.setText(Integer.toString(getArguments().getInt("athlete_id")));
-        athlete_surname_textView.setText(getArguments().getString("athleteSurname"));
+        athlete_surname_textView.setText(getArguments().getString("athlete_surname"));
         athlete_city_textView.setText(getArguments().getString("athlete_city"));
         athlete_country_textView.setText(getArguments().getString("athlete_country"));
         athlete_sport_id_textView.setText(Integer.toString(getArguments().getInt("athlete_sport_id")));
@@ -87,9 +87,9 @@ public class InfoAthlete extends Fragment {
 
     private void deleteAthleteFromDataBase() {
         Athlete athlete = new Athlete(
-                getArguments().getInt("sport_id"),
+                getArguments().getInt("athlete_id"),
                 getArguments().getString("athlete_first_name"),
-                getArguments().getString("athleteSurname"),
+                getArguments().getString("athlete_surname"),
                 getArguments().getString("athlete_city"),
                 getArguments().getString("athlete_country"),
                 getArguments().getInt("athlete_sport_id"),

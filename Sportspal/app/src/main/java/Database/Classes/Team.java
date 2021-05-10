@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "teams_table", foreignKeys = @ForeignKey(entity = Sport.class,
         parentColumns = "sport_id",
         childColumns = "team_sport_id",
-        onDelete = ForeignKey.SET_NULL),
+        onDelete = ForeignKey.RESTRICT),
         indices = {@Index(value = {"team_name"}, unique = true)})
 
 public class Team {
