@@ -64,13 +64,12 @@ public class AddAthlete extends Fragment {
         } else {
             athlete_id_textField.setEnabled(false);
             athlete_id_textField.setText(Integer.toString(getArguments().getInt("athlete_id")));
-            athlete_firstname_textField.setText(getArguments().getString("athlete_firstname"));
-            athlete_firstname_textField.setText(getArguments().getString("athlete_surname"));
-            athlete_firstname_textField.setText(getArguments().getString("athlete_city"));
-            athlete_firstname_textField.setText(getArguments().getString("athlete_Country"));
+            athlete_firstname_textField.setText(getArguments().getString("athlete_first_name"));
+            athlete_surname_textField.setText(getArguments().getString("athlete_surname"));
+            athlete_city_textField.setText(getArguments().getString("athlete_city"));
+            athlete_country_textField.setText(getArguments().getString("athlete_country"));
             athlete_sport_id_textField.setEnabled(false);
             athlete_sport_id_textField.setText(Integer.toString(getArguments().getInt("athlete_sport_id")));
-            athlete_birth_year_textField.setEnabled(false);
             athlete_birth_year_textField.setText(Integer.toString(getArguments().getInt("athlete_birth_year")));
 
             addAthlete.setText("Update");
