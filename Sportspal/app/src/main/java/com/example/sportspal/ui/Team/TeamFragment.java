@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Team.TeamViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -34,14 +33,14 @@ public class TeamFragment extends Fragment implements TeamAdapter.ListItemClickL
         teamViewModel =
                 new ViewModelProvider(this).get(TeamViewModel.class);
         root = inflater.inflate(R.layout.fragment_team, container, false);
-        fab = root.findViewById(R.id.sport_fab);//need changing
+        fab = root.findViewById(R.id.team_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.add_sport);//need changing
+                Navigation.findNavController(v).navigate(R.id.add_team);
             }
         });
-        RecyclerView teamRecyclerView = root.findViewById(R.id.sport_recyclerview);//need changing
+        RecyclerView teamRecyclerView = root.findViewById(R.id.team_recyclerview);
         teamRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         teamRecyclerView.setHasFixedSize(true);
 

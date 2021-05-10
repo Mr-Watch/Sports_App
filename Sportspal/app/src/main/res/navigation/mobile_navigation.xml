@@ -31,7 +31,11 @@
         android:id="@+id/nav_team"
         android:name="com.example.sportspal.ui.Team.TeamFragment"
         android:label="@string/menu_team"
-        tools:layout="@layout/fragment_team" />
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_nav_team_to_info_team"
+            app:destination="@id/info_team" />
+    </fragment>
     <fragment
         android:id="@+id/nav_about"
         android:name="com.example.sportspal.AboutFragment"
@@ -45,8 +49,13 @@
     <fragment
         android:id="@+id/add_athlete"
         android:name="com.example.sportspal.ui.Athlete.AddAthlete"
-        android:label="Add Sport"
-        tools:layout="@layout/fragment_add_sport" />
+        android:label="Add Athlete"
+        tools:layout="@layout/fragment_add_athlete" />
+    <fragment
+        android:id="@+id/add_team"
+        android:name="com.example.sportspal.ui.Team.AddTeam"
+        android:label="Add Team"
+        tools:layout="@layout/fragment_add_team" />
     <fragment
         android:id="@+id/info_sport"
         android:name="com.example.sportspal.ui.Sport.InfoSport"
@@ -86,6 +95,31 @@
         <argument
             android:name="athlete_city"
             app:argType="string" />
+        <argument
+            android:name="athlete_birth_year"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/info_team"
+        android:name="com.example.sportspal.ui.Team.InfoTeam"
+        android:label="Team Info"
+        tools:layout="@layout/fragment_info_team">
+        <argument
+            android:name="team_name"
+            app:argType="string" />
+        <argument
+            android:name="team_country"
+            app:argType="string" />
+        <argument
+            android:name="team_id"
+            app:argType="integer" />
+        <argument
+            android:name="team_city"
+            app:argType="string" />
+
+        <argument
+            android:name="team_sport_id"
+            app:argType="integer" />
         <argument
             android:name="athlete_birth_year"
             app:argType="integer" />
