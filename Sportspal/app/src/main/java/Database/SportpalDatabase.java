@@ -77,7 +77,8 @@ public abstract class SportpalDatabase extends RoomDatabase {
                     "Volley",
                     "Team",
                     "Male"));
-            athleteDao.insertAthlete(new Athlete(1,
+            athleteDao.insertAthlete(new Athlete(
+                    1,
                     "help",
                     "me",
                     "nowhere",

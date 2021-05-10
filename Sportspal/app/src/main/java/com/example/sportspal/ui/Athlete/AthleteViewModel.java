@@ -1,13 +1,12 @@
 package com.example.sportspal.ui.Athlete;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+
 
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
+
 
 import java.util.List;
 
