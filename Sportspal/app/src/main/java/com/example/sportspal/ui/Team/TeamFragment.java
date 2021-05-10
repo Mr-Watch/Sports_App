@@ -60,13 +60,13 @@ public class TeamFragment extends Fragment implements TeamAdapter.ListItemClickL
     public void onListItemClick(int position) {
         Team team = teamAdapter.getTeam(position);
         Bundle bundle = new Bundle();
-        bundle.putString("team_name", team.getTeamName());
         bundle.putInt("team_id", team.getTeam_id());
+        bundle.putString("team_name", team.getTeamName());
+        bundle.putString("team_field_name", team.getTeamFieldName());
         bundle.putString("team_city", team.getTeamCity());
         bundle.putString("team_country", team.getTeamCountry());
-        bundle.putInt("team_country", team.getTeamBirthYear());
-        bundle.putString("team_fieldname", team.getTeamFieldName());
-        bundle.putInt("team_sportid", team.getTeamSportId());
-        Navigation.findNavController(root).navigate(R.id.info_sport, bundle);//need changing
+        bundle.putInt("team_sport_id", team.getTeamSportId());
+        bundle.putInt("team_birth_year", team.getTeamBirthYear());
+        Navigation.findNavController(root).navigate(R.id.info_team, bundle);
     }
 }
