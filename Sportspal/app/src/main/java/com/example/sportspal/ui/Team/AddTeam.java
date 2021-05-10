@@ -6,15 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Team.TeamViewModel;
 
 import Database.Classes.Team;
 
@@ -87,15 +84,15 @@ public class AddTeam extends Fragment{
 
     private void getTeam() {
         String team_id_string = team_id_textField.getText().toString();
-        String team_first_name = team_name_textField.getText().toString();
-        String team_surname = team_field_name_textField.getText().toString();
+        String team_name = team_name_textField.getText().toString();
+        String team_field_name = team_field_name_textField.getText().toString();
         String team_city = team_city_textField.getText().toString();
         String team_country = team_country_textField.getText().toString();
         String team_sport_id = team_sport_id_textField.getText().toString();
         String team_birth_year = team_birth_year_textField.getText().toString();
 
 
-        if (team_id_string.isEmpty() || team_first_name.isEmpty() || team_surname.isEmpty() || team_city.isEmpty() || team_country.isEmpty() || team_sport_id.isEmpty() || team_birth_year.isEmpty()) {
+        if (team_id_string.isEmpty() || team_name.isEmpty() || team_field_name.isEmpty() || team_city.isEmpty() || team_country.isEmpty() || team_sport_id.isEmpty() || team_birth_year.isEmpty()) {
             Toast.makeText(getContext(), "No empty fields allowed", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -103,7 +100,7 @@ public class AddTeam extends Fragment{
         int team_id = Integer.parseInt(team_id_string);
         int team_Sport_id = Integer.parseInt(team_sport_id);
         int team_Birth_year = Integer.parseInt(team_birth_year);
-        team = new Team(team_id, team_first_name, team_surname, team_city,team_country,team_Sport_id,team_Birth_year);
+        team = new Team(team_id, team_name, team_field_name, team_city,team_country,team_Sport_id,team_Birth_year);
     }
 
     private void addTeamToDataBase() {
