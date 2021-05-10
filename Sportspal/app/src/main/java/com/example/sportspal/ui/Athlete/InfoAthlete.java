@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Athlete.AthleteViewModel;
+
 
 import Database.Classes.Athlete;
 
@@ -70,11 +70,11 @@ public class InfoAthlete extends Fragment {
         athlete_sport_id_textView = root.findViewById(R.id.athlete_sport_id_textView);
         athlete_birth_year_textView = root.findViewById(R.id.athlete_birth_year_textView);
 
-        athlete_firstname_textView.setText(getArguments().getString("athlete_first_name"));
+        athlete_firstname_textView.setText(getArguments().getString("athlete_firstname"));
         athlete_id_textView.setText(Integer.toString(getArguments().getInt("athlete_id")));
-        athlete_surname_textView.setText(getArguments().getString("athleteSurname"));
+        athlete_surname_textView.setText(getArguments().getString("athlete_surname"));
         athlete_city_textView.setText(getArguments().getString("athlete_city"));
-        athlete_country_textView.setText(getArguments().getString("athlete_country"));
+        athlete_country_textView.setText(getArguments().getString("athlete_Country"));
         athlete_sport_id_textView.setText(Integer.toString(getArguments().getInt("athlete_sport_id")));
         athlete_birth_year_textView.setText(Integer.toString(getArguments().getInt("athlete_birth_year")));
 
@@ -88,10 +88,10 @@ public class InfoAthlete extends Fragment {
     private void deleteAthleteFromDataBase() {
         Athlete athlete = new Athlete(
                 getArguments().getInt("sport_id"),
-                getArguments().getString("athlete_first_name"),
-                getArguments().getString("athleteSurname"),
+                getArguments().getString("athlete_firstname"),
+                getArguments().getString("athlete_surname"),
                 getArguments().getString("athlete_city"),
-                getArguments().getString("athlete_country"),
+                getArguments().getString("athlete_Country"),
                 getArguments().getInt("athlete_sport_id"),
                 getArguments().getInt("athlete_birth_year")
         );

@@ -6,15 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Athlete.AthleteViewModel;
+
 
 import Database.Classes.Athlete;
 
@@ -41,7 +40,7 @@ public class AddAthlete extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View root = inflater.inflate(R.layout.fragment_add_sport, container, false);
+        View root = inflater.inflate(R.layout.fragment_add_athlete, container, false);
         addAthlete = root.findViewById(R.id.add_athlete_button);
         athlete_id_textField = root.findViewById(R.id.athlete_id_textField);
         athlete_firstname_textField = root.findViewById(R.id.athlete_firstname_textField);
@@ -62,21 +61,20 @@ public class AddAthlete extends Fragment {
                     addAthleteToDataBase();
                 }
             });
-
-
         } else {
             athlete_id_textField.setEnabled(false);
             athlete_id_textField.setText(Integer.toString(getArguments().getInt("athlete_id")));
-            athlete_firstname_textField.setText(getArguments().getString("athlete_first_name"));
+            athlete_firstname_textField.setText(getArguments().getString("athlete_firstname"));
             athlete_firstname_textField.setText(getArguments().getString("athlete_surname"));
             athlete_firstname_textField.setText(getArguments().getString("athlete_city"));
-            athlete_firstname_textField.setText(getArguments().getString("athlete_country"));
+            athlete_firstname_textField.setText(getArguments().getString("athlete_Country"));
             athlete_sport_id_textField.setEnabled(false);
             athlete_sport_id_textField.setText(Integer.toString(getArguments().getInt("athlete_sport_id")));
             athlete_birth_year_textField.setEnabled(false);
             athlete_birth_year_textField.setText(Integer.toString(getArguments().getInt("athlete_birth_year")));
 
             addAthlete.setText("Update");
+
             addAthlete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

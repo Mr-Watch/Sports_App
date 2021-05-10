@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,7 +35,7 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
                              ViewGroup container, Bundle savedInstanceState) {
         athleteViewModel =
                 new ViewModelProvider(this).get(AthleteViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_athlete, container, false);
+        root = inflater.inflate(R.layout.fragment_athlete, container, false);
         fab1 = root.findViewById(R.id.athlete_fab);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,7 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
         bundle.putString("athlete_city", athlete.getAthleteCity());
         bundle.putString("athlete_Country", athlete.getAthleteCountry());
         bundle.putInt("athlete_birth_year", athlete.getAthleteBirthYear());
-        bundle.putInt("athlete_city", athlete.getAthleteSportId());
+        bundle.putInt("athlete_sport_id", athlete.getAthleteSportId());
         Navigation.findNavController(root).navigate(R.id.info_athlete, bundle);
     }
 }
