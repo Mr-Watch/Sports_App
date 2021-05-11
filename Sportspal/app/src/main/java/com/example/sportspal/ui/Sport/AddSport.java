@@ -109,6 +109,7 @@ public class AddSport extends Fragment {
         if (sport != null) {
             model.insertSports(sport);
             Toast.makeText(getContext(), "Sport added successfully", Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
         }
     }
 
@@ -116,6 +117,7 @@ public class AddSport extends Fragment {
         if (sport != null) {
             model.updateSports(sport);
             Toast.makeText(getContext(), "Sport updated successfully", Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
         }
     }
 }

@@ -31,12 +31,15 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
     private FloatingActionButton fab1;
     private View root;
 
+    private static final String query_gender = "Male";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         athleteViewModel =
                 new ViewModelProvider(this).get(AthleteViewModel.class);
         root = inflater.inflate(R.layout.fragment_athlete, container, false);
         fab1 = root.findViewById(R.id.athlete_fab);
+        System.out.println(container);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

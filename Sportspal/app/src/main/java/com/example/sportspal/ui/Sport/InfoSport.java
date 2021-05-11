@@ -80,7 +80,7 @@ public class InfoSport extends Fragment {
                 getArguments().getString("sport_type")
         );
         model.deleteSports(sport);
-
         Toast.makeText(getContext(), "Sport Removed", Toast.LENGTH_SHORT).show();
+        getActivity().onBackPressed();
     }
 }

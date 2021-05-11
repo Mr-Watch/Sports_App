@@ -36,6 +36,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
         Team currentTeam = teams.get(position);
         holder.textViewTeamName.setText(currentTeam.getTeamName());
         holder.textViewTeamCity.setText(currentTeam.getTeamCity());
+        holder.textViewTeamCountry.setText(currentTeam.getTeamCountry());
     }
 
     @Override
@@ -59,11 +60,13 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
     class TeamHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView textViewTeamName;
         private TextView textViewTeamCity;
+        private TextView textViewTeamCountry;
 
         public TeamHolder(@NonNull View itemView) {
             super(itemView);
             textViewTeamName = itemView.findViewById(R.id.team_name_recyclerView);
             textViewTeamCity = itemView.findViewById(R.id.team_city_recyclerView);
+            textViewTeamCountry = itemView.findViewById(R.id.team_country_recyclerView);
             itemView.setOnClickListener(this);
         }
 

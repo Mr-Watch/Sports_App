@@ -94,5 +94,6 @@ public class InfoTeam extends Fragment{
         model.deleteTeam(team);
 
         Toast.makeText(getContext(), "Team Removed", Toast.LENGTH_SHORT).show();
+        getActivity().onBackPressed();
     }
 }

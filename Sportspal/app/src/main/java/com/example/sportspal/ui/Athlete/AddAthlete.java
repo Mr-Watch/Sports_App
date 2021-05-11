@@ -110,6 +110,7 @@ public class AddAthlete extends Fragment {
         if (athlete != null) {
             model.insertAthletes(athlete);
             Toast.makeText(getContext(), "Athlete added successfully", Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
         }
     }
 
@@ -117,6 +118,7 @@ public class AddAthlete extends Fragment {
         if (athlete != null) {
             model.updateAthletes(athlete);
             Toast.makeText(getContext(), "Athlete updated successfully", Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
         }
     }
 }

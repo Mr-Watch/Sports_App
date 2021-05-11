@@ -107,6 +107,7 @@ public class AddTeam extends Fragment{
         if (team != null) {
             model.insertTeam(team);
             Toast.makeText(getContext(), "Team added successfully", Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
         }
     }
 
@@ -114,6 +115,7 @@ public class AddTeam extends Fragment{
         if (team != null) {
             model.updateTeam(team);
             Toast.makeText(getContext(), "Team updated successfully", Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
         }
     }
 }

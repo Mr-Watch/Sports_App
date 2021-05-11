@@ -16,6 +16,12 @@
             android:id="@+id/nav_team"
             android:icon="@drawable/ic_baseline_sports_kabaddi_24"
             android:title="@string/menu_team" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_room_queries"
+            android:icon="@drawable/ic_baseline_search_24"
+            android:title="@string/menu_room_queries" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_baseline_info_24"

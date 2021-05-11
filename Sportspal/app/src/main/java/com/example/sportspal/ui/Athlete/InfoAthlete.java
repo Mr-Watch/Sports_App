@@ -98,6 +98,7 @@ public class InfoAthlete extends Fragment {
         model.deleteAthletes(athlete);
 
         Toast.makeText(getContext(), "Athlete Removed", Toast.LENGTH_SHORT).show();
+        getActivity().onBackPressed();
     }
 
 }
