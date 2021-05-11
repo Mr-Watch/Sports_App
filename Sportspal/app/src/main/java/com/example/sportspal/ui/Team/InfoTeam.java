@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import com.example.sportspal.R;
 
 import Database.Classes.Team;
+import Database.FireBase.TeamFB;
 
 public class InfoTeam extends Fragment{
     private View root;
@@ -29,6 +30,7 @@ public class InfoTeam extends Fragment{
     private Button updateTeam;
 
     private TeamViewModel model;
+    private TeamFB fDB=null;
 
     public InfoTeam() {
         // Required empty public constructor
@@ -78,7 +80,7 @@ public class InfoTeam extends Fragment{
     }
 
     private void updateTeamFromDatabase(View v) {
-        Navigation.findNavController(v).navigate(R.id.add_team, getArguments());//needs changing
+        Navigation.findNavController(v).navigate(R.id.add_team, getArguments());
     }
 
     private void deleteTeamFromDataBase() {
@@ -91,6 +93,8 @@ public class InfoTeam extends Fragment{
                 getArguments().getInt("team_sport_id"),
                 getArguments().getInt("team_birth_year")
         );
+        fDB= new TeamFB();
+        fDB.deleteTeamFS(team);
         model.deleteTeam(team);
 
         Toast.makeText(getContext(), "Team Removed", Toast.LENGTH_SHORT).show();

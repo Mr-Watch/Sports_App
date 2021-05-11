@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.Task;
 import org.jetbrains.annotations.NotNull;
 
 import Database.Classes.Team;
+import Database.FireBase.TeamFB;
 
 public class AddTeam extends Fragment{
     private Button addTeam;
@@ -35,6 +36,7 @@ public class AddTeam extends Fragment{
     private EditText team_birth_year_textField;
     private TeamViewModel model;
     private Team team = null;
+    private TeamFB fDB = null;
 
     public AddTeam() {
         // Required empty public constructor
@@ -114,8 +116,9 @@ public class AddTeam extends Fragment{
 
     private void addTeamToDataBase() {
         if (team != null) {
+            fDB= new TeamFB();
+            fDB.insertTeamFS(team);
             model.insertTeam(team);
-            addTeamFS(team);
             Toast.makeText(getContext(), "Team added successfully", Toast.LENGTH_SHORT).show();
             getActivity().onBackPressed();
         }
@@ -123,33 +126,11 @@ public class AddTeam extends Fragment{
 
     private void updateTeam() {
         if (team != null) {
+            fDB= new TeamFB();
+            fDB.updateTeamFS(team);
             model.updateTeam(team);
-            updateTeamFS(team);
             Toast.makeText(getContext(), "Team updated successfully", Toast.LENGTH_SHORT).show();
             getActivity().onBackPressed();
-        }
-    }
-    private void addTeamFS(Team team){
-        try{
-            MainActivity.db.collection("Teams").document(""+team.getTeam_id()).set(team);
-        }catch (Exception e){
-            String message = e.getMessage();
-            Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
-        }
-        }
-    private void updateTeamFS(Team team){
-        try{
-            MainActivity.db.collection("Teams").document(""+team.getTeam_id()).update(
-                "teamName", team.getTeamName(),
-                    "teamFieldName",team.getTeamFieldName(),
-                     "teamCity", team.getTeamCity(),
-                     "teamCountry", team.getTeamCountry(),
-                     "teamSportId",team.getTeamSportId(),
-                     "teamBirthYear", team.getTeamBirthYear()
-            );
-        }catch (Exception e){
-            String message = e.getMessage();
-            Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
         }
     }
 }
