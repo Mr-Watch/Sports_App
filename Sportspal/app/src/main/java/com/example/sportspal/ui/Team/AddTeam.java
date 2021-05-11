@@ -1,5 +1,6 @@
 package com.example.sportspal.ui.Team;
 
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.loader.content.Loader;
 
+import com.example.sportspal.MainActivity;
 import com.example.sportspal.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+
+import org.jetbrains.annotations.NotNull;
 
 import Database.Classes.Team;
 
@@ -106,6 +115,7 @@ public class AddTeam extends Fragment{
     private void addTeamToDataBase() {
         if (team != null) {
             model.insertTeam(team);
+            addTeamFS(team);
             Toast.makeText(getContext(), "Team added successfully", Toast.LENGTH_SHORT).show();
             getActivity().onBackPressed();
         }
@@ -114,8 +124,32 @@ public class AddTeam extends Fragment{
     private void updateTeam() {
         if (team != null) {
             model.updateTeam(team);
+            updateTeamFS(team);
             Toast.makeText(getContext(), "Team updated successfully", Toast.LENGTH_SHORT).show();
             getActivity().onBackPressed();
+        }
+    }
+    private void addTeamFS(Team team){
+        try{
+            MainActivity.db.collection("Teams").document(""+team.getTeam_id()).set(team);
+        }catch (Exception e){
+            String message = e.getMessage();
+            Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
+        }
+        }
+    private void updateTeamFS(Team team){
+        try{
+            MainActivity.db.collection("Teams").document(""+team.getTeam_id()).update(
+                "teamName", team.getTeamName(),
+                    "teamFieldName",team.getTeamFieldName(),
+                     "teamCity", team.getTeamCity(),
+                     "teamCountry", team.getTeamCountry(),
+                     "teamSportId",team.getTeamSportId(),
+                     "teamBirthYear", team.getTeamBirthYear()
+            );
+        }catch (Exception e){
+            String message = e.getMessage();
+            Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
         }
     }
 }
