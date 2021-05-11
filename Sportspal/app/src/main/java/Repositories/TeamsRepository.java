@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.sportspal.ui.Team.TeamCount;
+
 import java.util.List;
 
 import Database.Classes.Team;
@@ -14,6 +16,7 @@ import Database.SportpalDatabase;
 public class TeamsRepository {
     private TeamDao mTeamDao;
     private LiveData<List<Team>> mTeams;
+    private LiveData<List<TeamCount>> mTeamsCount;
 
     public TeamsRepository(Application application) {
         SportpalDatabase db = SportpalDatabase.getDatabase(application);
@@ -24,6 +27,10 @@ public class TeamsRepository {
 
     public LiveData<List<Team>> getAllTeams() {
         return mTeams;
+    }
+
+    public LiveData<List<TeamCount>> getTeamsCount(){
+        return mTeamDao.getTeamsCount();
     }
 
     public void insertTeams(Team... teams) {

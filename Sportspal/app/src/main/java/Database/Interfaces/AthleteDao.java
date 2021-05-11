@@ -24,6 +24,12 @@ public interface AthleteDao {
     @Update
     void updateAthlete(Athlete... athletes);
 
-    @Query("SELECT * FROM ATHLETES_TABLE")
+    @Query("select * from athletes_table")
     LiveData<List<Athlete>> getAllAthletes();
+
+    @Query("select * " +
+            "from athletes_table " +
+            "where athlete_sport_id in" +
+            "(select sport_id from sports_table where sport_gender = :gender)")
+    LiveData<List<Athlete>> getAthletesBasedOnGender(String gender);
 }

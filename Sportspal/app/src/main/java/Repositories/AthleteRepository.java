@@ -1,6 +1,5 @@
 package Repositories;
 
-
 import android.app.Application;
 import android.os.AsyncTask;
 
@@ -15,6 +14,7 @@ import Database.SportpalDatabase;
 public class AthleteRepository {
     private AthleteDao mAthleteDao;
     private LiveData<List<Athlete>> mAthletes;
+    private LiveData<List<Athlete>> mAthletesBasedOnGender;
 
     public AthleteRepository(Application application) {
         SportpalDatabase db = SportpalDatabase.getDatabase(application);
@@ -24,6 +24,10 @@ public class AthleteRepository {
 
     public LiveData<List<Athlete>> getAllAthletes() {
         return mAthletes;
+    }
+
+    public LiveData<List<Athlete>> getAthletesBasedOnGender(String gender) {
+        return mAthleteDao.getAthletesBasedOnGender(gender);
     }
 
     public void insertAthlete(Athlete... athletes) {
@@ -37,6 +41,7 @@ public class AthleteRepository {
     public void updateAthlete(Athlete... athletes) {
         new AthleteRepository.updateAsyncTask(mAthleteDao).execute(athletes);
     }
+
     private class deleteAsyncTask extends AsyncTask<Athlete, Void, Void> {
         private AthleteDao mAsyncTaskDao;
 
@@ -50,6 +55,7 @@ public class AthleteRepository {
             return null;
         }
     }
+
     private class insertAsyncTask extends AsyncTask<Athlete, Void, Void> {
         private AthleteDao mAsyncTaskDao;
 
