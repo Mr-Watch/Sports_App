@@ -5,9 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import androidx.annotation.NonNull;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,8 +29,6 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
     private FloatingActionButton fab1;
     private View root;
 
-    private static final String query_gender = "Male";
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         athleteViewModel =
@@ -52,15 +48,24 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
 
         athleteAdapter = new AthleteAdapter(this);
         athleteRecyclerView.setAdapter(athleteAdapter);
+        if (getArguments() != null) {
+            athleteViewModel.getAthletesBasedOnGender(getArguments().getString("query_gender")).
+            observe(getViewLifecycleOwner(), new Observer<List<Athlete>>() {
+                @Override
+                public void onChanged(List<Athlete> athletes) {
+                    athleteAdapter.setAthletes(athletes);
+                }
+            });
+        } else {
+            athleteViewModel.getAllAthletes().observe(getViewLifecycleOwner(), new Observer<List<Athlete>>() {
+                @Override
+                public void onChanged(List<Athlete> athletes) {
+                    athleteAdapter.setAthletes(athletes);
+                }
+            });
+        }
 
-        athleteViewModel.getAllAthletes().observe(getViewLifecycleOwner(), new Observer<List<Athlete>>() {
-            @Override
-            public void onChanged(List<Athlete> athletes) {
-                athleteAdapter.setAthletes(athletes);
-            }
-        });
         return root;
-
     }
 
     @Override

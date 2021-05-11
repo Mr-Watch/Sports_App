@@ -1,17 +1,13 @@
 package com.example.sportspal.ui.Athlete;
 
-import androidx.lifecycle.LiveData;
-
-
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
-
+import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
 import Database.Classes.Athlete;
-
 import Repositories.AthleteRepository;
 
 public class AthleteViewModel extends AndroidViewModel {
@@ -19,15 +15,18 @@ public class AthleteViewModel extends AndroidViewModel {
     private LiveData<List<Athlete>> mAthletes;
 
 
-
-    public AthleteViewModel(Application application1) {
-        super(application1);
-        mRepository = new AthleteRepository(application1);
+    public AthleteViewModel(Application application) {
+        super(application);
+        mRepository = new AthleteRepository(application);
         mAthletes = mRepository.getAllAthletes();
     }
 
     LiveData<List<Athlete>> getAllAthletes() {
         return mAthletes;
+    }
+
+    LiveData<List<Athlete>> getAthletesBasedOnGender(String gender) {
+        return mRepository.getAthletesBasedOnGender(gender);
     }
 
     public void insertAthletes(Athlete... athletes) {

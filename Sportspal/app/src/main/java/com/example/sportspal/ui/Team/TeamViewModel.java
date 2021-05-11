@@ -4,12 +4,11 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
 import Database.Classes.Team;
+import Database.Interfaces.TeamDao;
 import Repositories.TeamsRepository;
 
 public class TeamViewModel extends AndroidViewModel {
@@ -25,6 +24,11 @@ public class TeamViewModel extends AndroidViewModel {
     public LiveData<List<Team>> getAllTeams() {
         return mTeams;
     }
+
+    public LiveData<List<TeamCount>> getTeamsCount() {
+        return mRepository.getTeamsCount();
+    }
+
     public void insertTeam(Team... teams) {
         mRepository.insertTeams(teams);
     }

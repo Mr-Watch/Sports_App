@@ -8,6 +8,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.sportspal.ui.Team.TeamCount;
+
 import java.util.List;
 
 import Database.Classes.Sport;
@@ -24,6 +26,13 @@ public interface TeamDao {
     @Update
     void updateTeam(Team... teams);
 
-    @Query("SELECT * FROM TEAMS_TABLE")
+    @Query("select * from teams_table")
     LiveData<List<Team>> getAllTeams();
+
+    @Query("select count(team_sport_id) as team_count,sport_name,sport_id " +
+            "from teams_table,sports_table " +
+            "where team_sport_id = sport_id  " +
+            "group by team_sport_id " +
+            "order by team_count desc")
+    LiveData<List<TeamCount>> getTeamsCount();
 }

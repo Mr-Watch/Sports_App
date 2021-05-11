@@ -66,9 +66,9 @@ public abstract class SportpalDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             DatabaseObjectGenerator generator = new DatabaseObjectGenerator(
-                    10,
-                    20,
-                    15);
+                    15,
+                    25,
+                    20);
             generator.generateObjects();
             sportDao.insertSports(generator.getGeneratedSports());
             athleteDao.insertAthlete(generator.getGeneratedAthletes());
