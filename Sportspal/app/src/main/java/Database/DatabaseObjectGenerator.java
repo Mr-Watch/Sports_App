@@ -8,13 +8,12 @@ import Database.Classes.Athlete;
 import Database.Classes.Sport;
 import Database.Classes.Team;
 
+
 public class DatabaseObjectGenerator {
     private List<Sport> generatedSports = new ArrayList<>();
     private List<Athlete> generatedAthletes = new ArrayList<>();
     private List<Team> generatedTeams = new ArrayList<>();
-
     private Random random = new Random();
-
     private int numberOfSports;
     private int numberOfAthletes;
     private int numberOfTeams;
