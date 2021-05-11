@@ -52,6 +52,11 @@
         android:label="Add Athlete"
         tools:layout="@layout/fragment_add_athlete" />
     <fragment
+        android:id="@+id/add_match"
+        android:name="com.example.sportspal.ui.Firebase.AddMatch"
+        android:label="Add Match"
+        tools:layout="@layout/fragment_add_match" />
+    <fragment
         android:id="@+id/add_team"
         android:name="com.example.sportspal.ui.Team.AddTeam"
         android:label="Add Team"
