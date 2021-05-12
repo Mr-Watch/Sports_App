@@ -1,6 +1,7 @@
 package com.example.sportspal.ui.Firebase;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Matches {
@@ -8,7 +9,7 @@ public class Matches {
     private String City;
     private String Country;
     private Timestamp Date;
-    private String Sport_id;
+    private int Sport_id;
     private String Typeof;
 
     public Matches() {
@@ -38,11 +39,11 @@ public class Matches {
         this.Date = Timestamp.valueOf(Date);
     }
 
-    public String getSport_id() {
+    public int getSport_id() {
         return Sport_id;
     }
 
-    public void setSport_id(String Sport_id) {
+    public void setSport_id(int Sport_id) {
         this.Sport_id = Sport_id;
     }
 
@@ -52,5 +53,67 @@ public class Matches {
 
     public String getTypeof() {
         return Typeof;
+    }
+}
+class Teambased extends Matches{
+    private int Team_id1;
+    private int Team_id2;
+    private int Score1;
+    private int Score2;
+    public Teambased(Matches match,int team_id1,int team_id2,int scr1,int scr2){
+        this.setCity(match.getCity());
+        this.setCountry(match.getCountry());
+        this.setSport_id(match.getSport_id());
+        this.setDate(match.getDate().toString());
+        this.setTypeof("Multiplayer");
+        this.Team_id1=team_id1;
+        this.Team_id2=team_id2;
+        this.Score1=scr1;
+        this.Score2=scr2;
+    }
+    public int getTeam_id1() {
+        return Team_id1;
+    }
+    public void setTeam_id1(int Team_id1) {
+        this.Team_id1 = Team_id1;
+    }    
+    
+    public int getTeam_id2() {
+        return Team_id2;
+    }
+    public void setTeam_id2(int Team_id2) {
+        this.Team_id2 = Team_id2;
+    }
+    
+    public int getScore1() {
+        return Score1;
+    }
+    public void setScore1(int Score1) {
+        this.Score1 = Score1;
+    }
+    
+    public int getScore2() {
+        return Score2;
+    }
+    public void setScore2(int Score2) {
+        this.Score2 = Score2;
+    }
+    
+}
+class Singleplayer extends Matches{
+    private Map<String, Integer> athlete_id_score = new HashMap<>();
+    Singleplayer(Matches match,int athlete_id, int score){
+        this.setCity(match.getCity());
+        this.setCountry(match.getCountry());
+        this.setSport_id(match.getSport_id());
+        this.setDate(match.getDate().toString());
+        this.setTypeof("Single player");
+        athlete_id_score.put(String.valueOf(athlete_id),score);
+    };
+    public void add(int athlete_id, int score){
+        athlete_id_score.put(String.valueOf(athlete_id),score);
+    }
+    public Map<String, Integer> getAthlete_id_score(){
+        return athlete_id_score;
     }
 }
