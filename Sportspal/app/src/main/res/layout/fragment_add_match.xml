@@ -6,6 +6,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".ui.Firebase.AddMatch">
 
     <EditText
@@ -59,6 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Date_textField" />
+
     <EditText
         android:id="@+id/Match_id_textField"
         style="@android:style/Widget.DeviceDefault.EditText"
@@ -81,4 +83,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/match_type_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Match_id_textField">
+
+        <RadioButton
+            android:id="@+id/RBSingleplayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single player" />
+
+        <RadioButton
+            android:id="@+id/RBMultiplayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Multiplayer" />
+    </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +29,9 @@ import com.google.android.gms.tasks.Task;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class AddMatch extends Fragment {
 
@@ -36,6 +41,7 @@ public class AddMatch extends Fragment {
     private EditText City_textField;
     private EditText Date_textField;
     private EditText Sport_id_textField;
+    private RadioGroup match_type_radioGroup;
 
     public AddMatch(){
 
@@ -50,6 +56,7 @@ public class AddMatch extends Fragment {
         City_textField = view.findViewById(R.id.City_textField);
         Date_textField = view.findViewById(R.id.Date_textField);
         Sport_id_textField = view.findViewById(R.id.Sport_id_textField);
+        match_type_radioGroup = view.findViewById(R.id.match_type_radioGroup);
         addMatch = view.findViewById(R.id.add_matches_button);
         addMatch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +66,11 @@ public class AddMatch extends Fragment {
             String var_matchCountry = Country_textField.getText().toString();
             String var_matchSport_id = Sport_id_textField.getText().toString();
             String var_matchDate = Date_textField.getText().toString();
+
+            int selected_type_id = match_type_radioGroup.getCheckedRadioButtonId();
+            RadioButton selected_type_button = getView().findViewById(selected_type_id);
+            String match_type = selected_type_button.getText().toString();
+
             try {
 
                 Matches matches = new Matches();
@@ -66,6 +78,7 @@ public class AddMatch extends Fragment {
                 matches.setCountry(var_matchCountry);
                 matches.setSport_id(var_matchSport_id);
                 matches.setDate(var_matchDate);
+                matches.setTypeof(match_type);
                 MainActivity.db.collection("Matches").document(""+var_match_id).set(matches).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
@@ -90,6 +103,7 @@ public class AddMatch extends Fragment {
         City_textField.setText("");
         Date_textField.setText("");
         Sport_id_textField.setText("");
+
         return  view;
     }
 }
