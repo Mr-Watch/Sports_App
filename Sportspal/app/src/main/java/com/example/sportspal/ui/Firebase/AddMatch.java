@@ -22,7 +22,7 @@ import com.example.sportspal.R;
 
 
 
-import com.example.sportspal.ui.Firebase.Matches;
+import com.example.sportspal.ui.Firebase.Matches.*;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -64,7 +64,7 @@ public class AddMatch extends Fragment {
                 String var_match_id = Match_id_textField.getText().toString();
             String var_matchCity = City_textField.getText().toString();
             String var_matchCountry = Country_textField.getText().toString();
-            String var_matchSport_id = Sport_id_textField.getText().toString();
+            int var_matchSport_id = Integer.parseInt(Sport_id_textField.getText().toString());
             String var_matchDate = Date_textField.getText().toString();
 
             int selected_type_id = match_type_radioGroup.getCheckedRadioButtonId();
@@ -78,19 +78,39 @@ public class AddMatch extends Fragment {
                 matches.setCountry(var_matchCountry);
                 matches.setSport_id(var_matchSport_id);
                 matches.setDate(var_matchDate);
-                matches.setTypeof(match_type);
-                MainActivity.db.collection("Matches").document(""+var_match_id).set(matches).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        Toast.makeText(getActivity(),"Match added.",Toast.LENGTH_LONG).show();
-                    }
-                })
-                 .addOnFailureListener(new OnFailureListener() {
-                     @Override
-                     public void onFailure(@NonNull @NotNull Exception e) {
-                         Toast.makeText(getActivity(), "Match added.", Toast.LENGTH_LONG).show();
-                     }
-                 });
+                if(match_type.equals("Single player")){
+                    Singleplayer singleplayer = new Singleplayer(matches,1,1);
+
+                    MainActivity.db.collection("Matches").document(""+var_match_id).set(singleplayer).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<Void> task) {
+                            Toast.makeText(getActivity(),"Match added.",Toast.LENGTH_LONG).show();
+                        }
+                    })
+                     .addOnFailureListener(new OnFailureListener() {
+                         @Override
+                         public void onFailure(@NonNull @NotNull Exception e) {
+                             Toast.makeText(getActivity(), "Match added.", Toast.LENGTH_LONG).show();
+                         }
+                     });
+                }else{
+                    Teambased teambased = new Teambased(matches,1,1,1,2);
+
+                    MainActivity.db.collection("Matches").document(""+var_match_id).set(teambased).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<Void> task) {
+                            Toast.makeText(getActivity(),"Match added.",Toast.LENGTH_LONG).show();
+                        }
+                    })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull @NotNull Exception e) {
+                                    Toast.makeText(getActivity(), "Match added.", Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+
+                }
             }catch (Exception e){
                 String message =e.getMessage();
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
