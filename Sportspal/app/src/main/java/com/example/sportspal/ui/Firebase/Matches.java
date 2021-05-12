@@ -74,6 +74,7 @@ class Teambased extends Matches{
         this.setCountry(match.getCountry());
         this.setSport_id(match.getSport_id());
         this.setDate(match.getDate().toString());
+        this.setMatch_id(match.getMatch_id());
         this.setTypeof("Multiplayer");
         this.Team_id1=team_id1;
         this.Team_id2=team_id2;
@@ -111,13 +112,13 @@ class Teambased extends Matches{
 }
 class Singleplayer extends Matches{
     private Map<String, Integer> athlete_id_score = new HashMap<>();
-    Singleplayer(Matches match,int athlete_id, int score){
+    Singleplayer(Matches match){
         this.setCity(match.getCity());
         this.setCountry(match.getCountry());
         this.setSport_id(match.getSport_id());
         this.setDate(match.getDate().toString());
+        this.setMatch_id(match.getMatch_id());
         this.setTypeof("Single player");
-        athlete_id_score.put(String.valueOf(athlete_id),score);
     };
     public void add(int athlete_id, int score){
         athlete_id_score.put(String.valueOf(athlete_id),score);
