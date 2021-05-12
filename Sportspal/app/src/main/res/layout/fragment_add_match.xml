@@ -66,13 +66,13 @@
         style="@android:style/Widget.DeviceDefault.EditText"
         android:layout_width="325dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="272dp"
         android:ems="10"
         android:hint="id"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Sport_id_textField" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/add_matches_button"
@@ -98,6 +98,7 @@
             android:id="@+id/RBSingleplayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="Single player" />
 
         <RadioButton
@@ -106,5 +107,144 @@
             android:layout_height="wrap_content"
             android:text="Multiplayer" />
     </RadioGroup>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="205dp"
+        android:layout_marginEnd="205dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/add_matches_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/match_type_radioGroup" />
+
+    <EditText
+        android:id="@+id/Team1_id_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Team 1 id"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/match_type_radioGroup" />
+
+    <EditText
+        android:id="@+id/Team2_id_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Team 2 id"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/Team1_score_number" />
+
+    <EditText
+        android:id="@+id/Team1_score_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Team 1 score"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/Team1_id_number" />
+
+    <EditText
+        android:id="@+id/Team2_score_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Team 2 score"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/Team2_id_number" />
+
+    <ScrollView
+        android:id="@+id/Single_player_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_matches_button"
+        app:layout_constraintEnd_toStartOf="@+id/divider2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/match_type_radioGroup">
+
+        <LinearLayout
+            android:id="@+id/Single_player_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/Athlete1_id2_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Athlete 1 id"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/divider2"
+                app:layout_constraintTop_toBottomOf="@+id/match_type_radioGroup" />
+
+            <EditText
+                android:id="@+id/Athlete1_score_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Athlete 1 score"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/divider2"
+                app:layout_constraintTop_toBottomOf="@+id/Athlete1_id" />
+
+            <EditText
+                android:id="@+id/Athlete2_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Athlete 2 id"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@+id/divider2"
+                app:layout_constraintTop_toBottomOf="@+id/Athlete1_score_number" />
+
+            <EditText
+                android:id="@+id/Athlete2_score_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Athlete 2 score"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/divider2"
+                app:layout_constraintTop_toBottomOf="@+id/Athlete2_id" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/Add_textfields"
+        android:layout_width="52dp"
+        android:layout_height="49dp"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:layout_constraintStart_toStartOf="@+id/Single_player_list"
+        app:layout_constraintTop_toBottomOf="@+id/Single_player_list" />
+
+    <Button
+        android:id="@+id/Remove_textfields"
+        android:layout_width="52dp"
+        android:layout_height="49dp"
+        app:icon="@android:drawable/ic_menu_close_clear_cancel"
+        app:iconSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/Add_textfields"
+        app:layout_constraintTop_toBottomOf="@+id/Single_player_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
