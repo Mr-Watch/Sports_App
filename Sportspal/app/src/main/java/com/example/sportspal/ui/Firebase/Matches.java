@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Matches {
-
+    private String Match_id;
     private String City;
     private String Country;
     private Timestamp Date;
@@ -14,6 +14,15 @@ public class Matches {
 
     public Matches() {
     }
+
+    public String getMatch_id() {
+        return Match_id;
+    }
+
+    public void setMatch_id(String Match_id) {
+        this.Match_id = Match_id;
+    }
+
 
     public String getCity() {
         return City;

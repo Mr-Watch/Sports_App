@@ -26,6 +26,16 @@
             app:destination="@id/info_athlete" />
 
     </fragment>
+    <fragment
+        android:id="@+id/nav_match"
+        android:name="com.example.sportspal.ui.Athlete.AthleteFragment"
+        android:label="@string/menu_athlete"
+        tools:layout="@layout/fragment_athlete" >
+        <action
+            android:id="@+id/action_nav_match_to_info_match"
+            app:destination="@id/info_match" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_team"
@@ -104,6 +114,32 @@
             android:name="athlete_birth_year"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/info_match"
+        android:name="com.example.sportspal.ui.Athlete.InfoAthlete"
+        android:label="Athlete Info"
+        tools:layout="@layout/fragment_info_athlete">
+        <argument
+            android:name="athlete_first_name"
+            app:argType="string" />
+        <argument
+            android:name="athlete_surname"
+            app:argType="string" />
+        <argument
+            android:name="athlete_id"
+            app:argType="integer" />
+        <argument
+            android:name="athlete_country"
+            app:argType="string" />
+
+        <argument
+            android:name="athlete_city"
+            app:argType="string" />
+        <argument
+            android:name="athlete_birth_year"
+            app:argType="integer" />
+    </fragment>
+
     <fragment
         android:id="@+id/info_team"
         android:name="com.example.sportspal.ui.Team.InfoTeam"
