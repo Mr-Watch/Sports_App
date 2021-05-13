@@ -41,7 +41,7 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/room_query_1_Button"
+        android:id="@+id/room_query_1_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

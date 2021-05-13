@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.example.sportspal.ui.Team.TeamCount;
+import com.example.sportspal.ui.Team.TeamStats;
 
 import java.util.List;
 
@@ -16,7 +17,6 @@ import Database.SportpalDatabase;
 public class TeamsRepository {
     private TeamDao mTeamDao;
     private LiveData<List<Team>> mTeams;
-    private LiveData<List<TeamCount>> mTeamsCount;
 
     public TeamsRepository(Application application) {
         SportpalDatabase db = SportpalDatabase.getDatabase(application);
@@ -29,9 +29,30 @@ public class TeamsRepository {
         return mTeams;
     }
 
-    public LiveData<List<TeamCount>> getTeamsCount(){
+    public LiveData<List<TeamCount>> getTeamsCount() {
         return mTeamDao.getTeamsCount();
     }
+
+    public LiveData<TeamStats> getTeamStats(int year) {
+        return mTeamDao.getTeamStats(year);
+    }
+//    public void getTeamStats(int year) {
+//        new TeamsRepository.getTeamStatsAsyncTask(mTeamDao).execute(year);
+//    }
+//
+//    private class getTeamStatsAsyncTask extends AsyncTask<Integer, Void, TeamStats> {
+//        private TeamDao mAsyncTaskDao;
+//
+//        getTeamStatsAsyncTask(TeamDao dao) {
+//            mAsyncTaskDao = dao;
+//        }
+//
+//        @Override
+//        protected TeamStats doInBackground(Integer... integers) {
+//            return mAsyncTaskDao.getTeamStats(integers[0]);
+//        }
+//    }
+
 
     public void insertTeams(Team... teams) {
         new TeamsRepository.insertAsyncTask(mTeamDao).execute(teams);

@@ -23,6 +23,6 @@ public interface SportDao {
     @Update
     void updateSports(Sport... sports);
 
-    @Query("SELECT * FROM SPORTS_TABLE")
+    @Query("select * from sports_table")
     LiveData<List<Sport>> getAllSports();
 }

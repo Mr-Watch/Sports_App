@@ -28,7 +28,7 @@ public class RoomQuery1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_room_query_1, container, false);
-        Button queryButton = root.findViewById(R.id.room_query_1_Button);
+        Button queryButton = root.findViewById(R.id.room_query_1_button);
 
         queryButton.setOnClickListener(new View.OnClickListener() {
             @Override

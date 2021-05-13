@@ -9,7 +9,9 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.sportspal.ui.Team.TeamCount;
+import com.example.sportspal.ui.Team.TeamStats;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Database.Classes.Sport;
@@ -35,4 +37,10 @@ public interface TeamDao {
             "group by team_sport_id " +
             "order by team_count desc")
     LiveData<List<TeamCount>> getTeamsCount();
+
+    @Query("select count(case when  team_birth_year > :year then 1 end ) as count_above," +
+            "count(case when  team_birth_year < :year then 1 end ) as count_below," +
+            "count(case when  team_birth_year = :year then 1 end ) as count_equal," +
+            "avg(team_birth_year) as count_average from teams_table")
+    LiveData<TeamStats> getTeamStats(int year);
 }

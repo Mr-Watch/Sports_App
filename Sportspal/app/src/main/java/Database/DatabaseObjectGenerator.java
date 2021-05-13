@@ -55,7 +55,7 @@ public class DatabaseObjectGenerator {
             String athleteCity = "athlete city " + i;
             String athleteCountry = "athlete country " + i;
             int athleteSportId = random.nextInt(numberOfSports - 1) + 1;
-            int athleteBirthYear = random.nextInt(2021 - 1880) + 1880;
+            int athleteBirthYear = random.nextInt(1935 - 1880) + 1880;
             generatedAthletes.add(new Athlete(
                     i,
                     athleteFirstName,
@@ -74,7 +74,7 @@ public class DatabaseObjectGenerator {
             String teamCity = "team city " + i;
             String teamCountry = "team country " + i;
             int teamSportId = random.nextInt(numberOfSports - 1) + 1;
-            int teamBirthYear = random.nextInt(2021 - 1880) + 1880;
+            int teamBirthYear = random.nextInt(1935 - 1880) + 1880;
             generatedTeams.add(new Team(
                     i,
                     teamFirstName,

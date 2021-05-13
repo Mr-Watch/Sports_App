@@ -16,13 +16,10 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class RoomQueriesFragment extends Fragment {
 
-    private RoomQueriesViewModel mViewModel;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.room_queries_fragment, container, false);
-        return root;
+        return inflater.inflate(R.layout.room_queries_fragment, container, false);
     }
 
     @Override
