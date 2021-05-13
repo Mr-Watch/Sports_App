@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportspal.R;
-import com.
+import com.example.sportspal.ui.Firebase.Matches;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -40,40 +40,15 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MatchHolder holder, int position) {
-        Matches currentMatch = matches.get(position);
-        holder.textViewMatch_id.setText(currentMatch.getMatch_id());
-        holder.textViewMatchdate.setText(currentMatch.getDate().toString());
-        holder.textViewCountry.setText(currentMatch.getCountry());
-    }
-
-    @Override
     protected void onBindViewHolder(@NonNull @NotNull MatchHolder holder, int position, @NonNull @NotNull Matches model) {
         holder.textViewMatch_id.setText(model.getMatch_id());
-        holder.textViewMatchdate.setText(model.getDate().toString());
+        holder.textViewMatchdate.setText(String.valueOf(model.getDate()));
         holder.textViewCountry.setText(model.getCountry());
     }
 
 
 
 
-    @Override
-    public int getItemCount() {
-        return matches.size();
-    }
-
-    public Matches getMatches(int position) {
-        return matches.get(position);
-    }
-
-    public void setMatches(List<Matches> matches) {
-        this.matches = matches;
-        notifyDataSetChanged();
-    }
-
-    public interface ListItemClickListener {
-        void onListItemClick(int position);
-    }
 
     class MatchHolder extends RecyclerView.ViewHolder  {
         private TextView textViewMatch_id;
@@ -85,13 +60,8 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
             textViewMatch_id = itemView.findViewById(R.id.match_id_recyclerView);
             textViewMatchdate = itemView.findViewById(R.id.match_date_recyclerView);
             textViewCountry = itemView.findViewById(R.id.match_country_recyclerView);
-            itemView.setOnClickListener(this);
+
         }
 
-        @Override
-        public void onClick(View v) {
-            int position = getAdapterPosition();
-            mOnClickListener.onListItemClick(position);
-        }
     }
 }

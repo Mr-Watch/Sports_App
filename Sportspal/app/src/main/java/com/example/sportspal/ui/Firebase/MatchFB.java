@@ -13,7 +13,7 @@ public class MatchFB extends Fragment {
     public MatchFB(){
 
     }
-    @Query("select * from ")
+
 
     public void updateMatchFS(Matches matches){
 

@@ -11,6 +11,7 @@
     <string name="menu_athlete">Athletes</string>
     <string name="menu_firebase">Matches</string>
     <string name="menu_team">Teams</string>
+    <string name="menu_match">Matches</string>
     <string name="menu_about">About</string>
     <string name="about_paragraph">This app is really bad Don\'t use it!</string>
     <string name="about_participants">  * Στέλιος Μάνιος (akismanios@gmail.com)\n
@@ -21,7 +22,7 @@
     <string name="sport_gender">Male</string>
 
     <string name="match_id">id</string>
-    <string name="match_date">10-12-2022</string>
+    <string name="match_date">10/12/2022</string>
     <string name="match_country">greece</string>
 
     <string name="athlete_first_name">jon</string>

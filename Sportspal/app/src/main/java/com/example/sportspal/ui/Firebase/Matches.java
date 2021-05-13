@@ -5,10 +5,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Matches {
+    public Matches(String match_id, String city, String country, String date, int sport_id, String typeof) {
+        Match_id = match_id;
+        City = city;
+        Country = country;
+        Date = date;
+        Sport_id = sport_id;
+        Typeof = typeof;
+    }
+
     private String Match_id;
     private String City;
     private String Country;
-    private Timestamp Date;
+    private String Date;
     private int Sport_id;
     private String Typeof;
 
@@ -40,12 +49,12 @@ public class Matches {
         this.Country = Country;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return Date;
     }
 
     public void setDate(String Date) {
-        this.Date = Timestamp.valueOf(Date);
+        this.Date = Date;
     }
 
     public int getSport_id() {
@@ -73,7 +82,7 @@ class Teambased extends Matches{
         this.setCity(match.getCity());
         this.setCountry(match.getCountry());
         this.setSport_id(match.getSport_id());
-        this.setDate(match.getDate().toString());
+        this.setDate(match.getDate());
         this.setMatch_id(match.getMatch_id());
         this.setTypeof("Multiplayer");
         this.Team_id1=team_id1;
@@ -116,7 +125,7 @@ class Singleplayer extends Matches{
         this.setCity(match.getCity());
         this.setCountry(match.getCountry());
         this.setSport_id(match.getSport_id());
-        this.setDate(match.getDate().toString());
+        this.setDate(match.getDate());
         this.setMatch_id(match.getMatch_id());
         this.setTypeof("Single player");
     };

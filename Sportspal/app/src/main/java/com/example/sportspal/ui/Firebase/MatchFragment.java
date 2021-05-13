@@ -31,7 +31,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.example.sportspal.MainActivity;
 
-public class MatchFragment extends Fragment {
+public class MatchFragment extends Fragment{
 
 
     private CollectionReference matchesref = MainActivity.db.collection("Matches");
@@ -66,7 +66,7 @@ public class MatchFragment extends Fragment {
     }
 
     private void SetUpRecyclerview() {
-        Query query = matchesref.orderBy("City", Query.Direction.DESCENDING);
+        Query query = matchesref.orderBy("Country", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Matches> options = new FirestoreRecyclerOptions.Builder<Matches>()
                 .setQuery(query, Matches.class)
@@ -75,7 +75,17 @@ public class MatchFragment extends Fragment {
         matchAdapter = new MatchAdapter(options);
     }
 
-   /* @Override
+    @Override
+    public void onStart(){
+        super.onStart();
+        matchAdapter.startListening();
+    }
+
+    public void onStop(){
+        super.onStop();
+        matchAdapter.stopListening();
+    }
+    /* @Override
     public void onListItemClick(int position) {
         Matches matches = matchAdapter.getMatches(position);
         Bundle bundle = new Bundle();

@@ -28,9 +28,9 @@
     </fragment>
     <fragment
         android:id="@+id/nav_match"
-        android:name="com.example.sportspal.ui.Athlete.AthleteFragment"
-        android:label="@string/menu_athlete"
-        tools:layout="@layout/fragment_athlete" >
+        android:name="com.example.sportspal.ui.Firebase.MatchFragment"
+        android:label="@string/menu_match"
+        tools:layout="@layout/fragment_match" >
         <action
             android:id="@+id/action_nav_match_to_info_match"
             app:destination="@id/info_match" />

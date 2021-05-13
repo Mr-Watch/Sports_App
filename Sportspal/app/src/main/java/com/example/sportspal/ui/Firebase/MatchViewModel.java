@@ -9,10 +9,10 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import com.example.sportspal.ui.Firebase.Matches;
-import Repositories.MatchRepository;
 
-public class MatchViewModel extends AndroidViewModel {
-    private MatchRepository mRepository;
+
+public class MatchViewModel {
+/*    private MatchRepository mRepository;
     private LiveData<List<Matches>> mMatches;
 
 
@@ -42,4 +42,6 @@ public class MatchViewModel extends AndroidViewModel {
         mRepository.updateMatches(matches);
     }
 
+
+ */
 }
