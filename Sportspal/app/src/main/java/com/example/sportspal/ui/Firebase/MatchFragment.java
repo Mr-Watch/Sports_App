@@ -37,12 +37,12 @@ public class MatchFragment extends Fragment{
     private CollectionReference matchesref = MainActivity.db.collection("Matches");
     private MatchAdapter matchAdapter;
     private FloatingActionButton fab2;
-
+    private View view;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_match, container, false);
+        view = inflater.inflate(R.layout.fragment_match, container, false);
 
         fab2 = view.findViewById(R.id.add_match_button);
         System.out.println(container);
@@ -85,7 +85,7 @@ public class MatchFragment extends Fragment{
         super.onStop();
         matchAdapter.stopListening();
     }
-    /* @Override
+/*
     public void onListItemClick(int position) {
         Matches matches = matchAdapter.getMatches(position);
         Bundle bundle = new Bundle();
@@ -96,8 +96,14 @@ public class MatchFragment extends Fragment{
         bundle.putString("Typeof", matches.getTypeof());
         bundle.putInt("Sport_id", matches.getSport_id());
 
-        Navigation.findNavController(root).navigate(R.id.info_match, bundle);
+        Navigation.findNavController(view).navigate(R.id.info_match, bundle);
     }
 
-    */
+
+
+
+ */
+
+
+
 }

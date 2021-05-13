@@ -1,11 +1,14 @@
 package Adapters;
 
+import android.service.autofill.FieldClassification;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportspal.R;
@@ -15,11 +18,14 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import Database.Classes.Athlete;
 
 
 public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter.MatchHolder> {
-
+    private ListItemClickListener mlistener;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -27,8 +33,11 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
      *
      * @param options
      */
+
     public MatchAdapter(@NonNull @NotNull FirestoreRecyclerOptions<Matches> options) {
         super(options);
+
+
     }
 
     @NonNull
@@ -46,11 +55,21 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
         holder.textViewCountry.setText(model.getCountry());
     }
 
+/*
+    @Override
+    public int getItemCount() {
+        return matches.size();
+    }
 
-
-
-
-    class MatchHolder extends RecyclerView.ViewHolder  {
+    public Matches getMatches(int position) {
+        return matches.get(position);
+    }
+    public void setMatches(List<Matches> matches) {
+        this.matches = matches;
+        notifyDataSetChanged();
+    }
+*/
+    class MatchHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         private TextView textViewMatch_id;
         private TextView textViewMatchdate;
         private TextView textViewCountry;
@@ -61,7 +80,26 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
             textViewMatchdate = itemView.findViewById(R.id.match_date_recyclerView);
             textViewCountry = itemView.findViewById(R.id.match_country_recyclerView);
 
+            itemView.setOnClickListener(this);
+
+
         }
 
+        @Override
+        public void onClick(View v) {
+            if (mlistener != null){
+                int position = getAdapterPosition();
+                if (position !=RecyclerView.NO_POSITION){
+                    mlistener.onListItemClick(position);
+                }
+            }
+        }
+    }
+    public interface ListItemClickListener {
+        void onListItemClick(int position);
+    }
+
+    public void ListItemClickListener(ListItemClickListener listener){
+        mlistener = listener;
     }
 }
