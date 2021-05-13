@@ -70,10 +70,10 @@ public class InfoMatch extends Fragment {
 
 
 
-        Country_textView.setText(getArguments().getString("Country"));
-        City_textView.setText(getArguments().getString("City"));
-        Date_textView.setText(getArguments().getString("Date"));
-        Sport_id_textView.setText(Integer.toString(getArguments().getInt("Sport_id")));
+        Country_textView.setText(getArguments().getString("country"));
+        City_textView.setText(getArguments().getString("city"));
+        Date_textView.setText(getArguments().getString("date"));
+        Sport_id_textView.setText(Integer.toString(getArguments().getInt("sport_id")));
 
 
         return root;

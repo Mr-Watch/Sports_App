@@ -66,7 +66,7 @@ public class MatchFragment extends Fragment{
     }
 
     private void SetUpRecyclerview() {
-        Query query = matchesref.orderBy("Country", Query.Direction.DESCENDING);
+        Query query = matchesref.orderBy("country", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Matches> options = new FirestoreRecyclerOptions.Builder<Matches>()
                 .setQuery(query, Matches.class)
@@ -92,7 +92,7 @@ public class MatchFragment extends Fragment{
         bundle.putString("Match_id", matches.getMatch_id());
         bundle.putString("City", matches.getCity());
         bundle.putString("Country", matches.getCountry());
-        bundle.putString("Date", matches.getDate().toString());
+        bundle.putString("Date", matches.getDate());
         bundle.putString("Typeof", matches.getTypeof());
         bundle.putInt("Sport_id", matches.getSport_id());
 
