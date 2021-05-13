@@ -30,8 +30,7 @@ public class TeamFragment extends Fragment implements TeamAdapter.ListItemClickL
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        teamViewModel =
-                new ViewModelProvider(this).get(TeamViewModel.class);
+        teamViewModel = new ViewModelProvider(this).get(TeamViewModel.class);
         root = inflater.inflate(R.layout.fragment_team, container, false);
         fab = root.findViewById(R.id.team_fab);
         fab.setOnClickListener(new View.OnClickListener() {

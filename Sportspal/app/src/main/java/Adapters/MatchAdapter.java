@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportspal.R;
@@ -21,12 +19,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import Database.Classes.Athlete;
+import Database.Classes.Team;
 
 
 public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter.MatchHolder> {
-    private ListItemClickListener mlistener;
-
+    final private ListItemClickListener mlistener;
+    private List<Matches> matches = new ArrayList<>();
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -34,10 +32,9 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
      * @param options
      */
 
-    public MatchAdapter(@NonNull @NotNull FirestoreRecyclerOptions<Matches> options) {
+    public MatchAdapter(@NonNull @NotNull FirestoreRecyclerOptions<Matches> options, ListItemClickListener mOnClickListener) {
         super(options);
-
-
+        this.mlistener = mOnClickListener;
     }
 
     @NonNull
@@ -55,20 +52,17 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
         holder.textViewCountry.setText(model.getCountry());
     }
 
-/*
-    @Override
+/*    @Override
     public int getItemCount() {
         return matches.size();
-    }
-
-    public Matches getMatches(int position) {
-        return matches.get(position);
     }
     public void setMatches(List<Matches> matches) {
         this.matches = matches;
         notifyDataSetChanged();
     }
-*/
+    public Matches getMatches(int position) {
+        return matches.get(position);
+    }*/
     class MatchHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         private TextView textViewMatch_id;
         private TextView textViewMatchdate;
@@ -99,7 +93,7 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
         void onListItemClick(int position);
     }
 
-    public void ListItemClickListener(ListItemClickListener listener){
+    /*public void ListItemClickListener(ListItemClickListener listener){
         mlistener = listener;
-    }
+    }*/
 }
