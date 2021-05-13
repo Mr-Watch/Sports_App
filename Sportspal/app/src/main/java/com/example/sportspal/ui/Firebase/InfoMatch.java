@@ -48,13 +48,13 @@ public class InfoMatch extends Fragment {
         deleteMatch = root.findViewById(R.id.match_delete_button);
         updateMatch = root.findViewById(R.id.match_update_button);
 
-      /*  deleteMatch.setOnClickListener(new View.OnClickListener() {
+      deleteMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteMatchFromDataBase();
             }
         });
-*/
+
         updateMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,14 +82,15 @@ public class InfoMatch extends Fragment {
     private void updateMatchFromDatabase(View v) {
         Navigation.findNavController(v).navigate(R.id.add_match, getArguments());
     }
-/*
+
     private void deleteMatchFromDataBase() {
         Matches match = new Matches(
-
+                getArguments().getString("Match_id"),
                 getArguments().getString("Country"),
                 getArguments().getString("City"),
                 getArguments().getString("Date"),
-                getArguments().getInt("Sport_id")
+                getArguments().getInt("Sport_id"),
+                getArguments().getString("Typeof")
 
                 );
         fDB=new MatchFB();
@@ -99,5 +100,5 @@ public class InfoMatch extends Fragment {
         Toast.makeText(getContext(), "Match Removed", Toast.LENGTH_SHORT).show();
         getActivity().onBackPressed();
     }
-*/
+
 }

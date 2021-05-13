@@ -116,9 +116,9 @@
     </fragment>
     <fragment
         android:id="@+id/info_match"
-        android:name="com.example.sportspal.ui.Athlete.InfoAthlete"
+        android:name="com.example.sportspal.ui.Firebase.InfoMatch"
         android:label="Athlete Info"
-        tools:layout="@layout/fragment_info_athlete">
+        tools:layout="@layout/fragment_info_match">
         <argument
             android:name="athlete_first_name"
             app:argType="string" />

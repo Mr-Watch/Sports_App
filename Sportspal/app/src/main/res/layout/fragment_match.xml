@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Athlete.AthleteFragment">
+    tools:context=".ui.Firebase.MatchFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/athlete_recyclerview"
+        android:id="@+id/match_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/athlete_recyclerview_item" />
+        tools:listitem="@layout/match_recyclerview_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_match_button"

@@ -20,6 +20,10 @@
     <string name="sport_name">Baseball</string>
     <string name="sport_gender">Male</string>
 
+    <string name="match_id">id</string>
+    <string name="match_date">10-12-2022</string>
+    <string name="match_country">greece</string>
+
     <string name="athlete_first_name">jon</string>
     <string name="athlete_surname">doe</string>
     <string name="athlete_country">greece</string>
