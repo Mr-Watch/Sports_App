@@ -44,14 +44,22 @@ public class MatchFragment extends Fragment implements  MatchAdapter.ListItemCli
     private MatchAdapter matchAdapter;
     private FloatingActionButton fab2;
     private View view;
-
+    private Query query;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_match, container, false);
         fab2 = view.findViewById(R.id.add_match_button);
-        System.out.println(container);
-        Query query = matchesref.orderBy("country", Query.Direction.DESCENDING);
 
+        if(getArguments() != null){
+
+            if(getArguments().getString("typeof") == null ) {
+                query = matchesref.whereEqualTo("date", getArguments().getString("query_date"));
+            }else{
+                query = matchesref.whereEqualTo("typeof", getArguments().getString("query_typeof"));
+            }
+            }else {
+            query = matchesref.orderBy("country", Query.Direction.DESCENDING);
+        }
         FirestoreRecyclerOptions<Matches> options = new FirestoreRecyclerOptions.Builder<Matches>()
                 .setQuery(query, Matches.class)
                 .build();

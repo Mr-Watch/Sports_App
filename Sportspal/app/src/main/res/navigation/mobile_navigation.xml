@@ -170,5 +170,10 @@
         android:name="com.example.sportspal.ui.RoomQueries.RoomQueriesFragment"
         android:label="@string/menu_room_queries"
         tools:layout="@layout/room_queries_fragment" />
+    <fragment
+        android:id="@+id/nav_firebase_queries"
+        android:name="com.example.sportspal.ui.FirebaseQueries.FirebaseQueriesFragment"
+        android:label="@string/menu_firebase_queries"
+        tools:layout="@layout/firebase_queries_fragment" />
 
 </navigation>
