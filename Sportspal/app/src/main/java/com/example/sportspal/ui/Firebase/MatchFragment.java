@@ -52,7 +52,7 @@ public class MatchFragment extends Fragment implements  MatchAdapter.ListItemCli
 
         if(getArguments() != null){
 
-            if(getArguments().getString("typeof") == null ) {
+            if(getArguments().getString("query_typeof") == null ) {
                 query = matchesref.whereEqualTo("date", getArguments().getString("query_date"));
             }else{
                 query = matchesref.whereEqualTo("typeof", getArguments().getString("query_typeof"));
