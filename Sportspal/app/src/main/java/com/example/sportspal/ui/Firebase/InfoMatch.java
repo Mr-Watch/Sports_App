@@ -1,7 +1,6 @@
 package com.example.sportspal.ui.Firebase;
 
 import android.os.Bundle;
-import android.service.autofill.FieldClassification;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import com.example.sportspal.ui.Firebase.MatchFB;
+
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Firebase.Matches;
 
-import java.sql.Timestamp;
-
-import Database.FireBase.TeamFB;
-
+import Database.FireBase.MatchFB;
 
 public class InfoMatch extends Fragment {
     private View root;
