@@ -90,6 +90,10 @@ class Teambased extends Matches{
         this.Score1=scr1;
         this.Score2=scr2;
     }
+
+    public Teambased() {
+    }
+
     public int getTeam_id1() {
         return Team_id1;
     }
@@ -129,6 +133,10 @@ class Singleplayer extends Matches{
         this.setMatch_id(match.getMatch_id());
         this.setTypeof("Single player");
     };
+
+    public Singleplayer() {
+    }
+
     public void add(int athlete_id, int score){
         athlete_id_score.put(String.valueOf(athlete_id),score);
     }
