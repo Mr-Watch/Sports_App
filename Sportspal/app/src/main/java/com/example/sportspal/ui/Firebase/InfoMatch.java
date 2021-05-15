@@ -1,5 +1,6 @@
 package com.example.sportspal.ui.Firebase;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.service.autofill.FieldClassification;
 import android.util.Log;
@@ -22,6 +23,11 @@ import com.example.sportspal.ui.Firebase.Matches;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import Database.FireBase.MatchFB;
 
@@ -93,15 +99,30 @@ public class InfoMatch extends Fragment {
                     Teambased team = documentSnapshot.toObject(Teambased.class);
                     a.setText(team.getTeam_id1()+":"+team.getScore1());
                     id_score_layout.addView(a);
-                    b.setText(team.getTeam_id2()+""+team.getScore2());
+                    b.setText(team.getTeam_id2()+":"+team.getScore2());
                     id_score_layout.addView(b);
-
                 }
             });
 
 
         }else{
             id_score_textview.setText("Athlete id:Score");
+            Context c = this.getContext();
+            matchesref.document(getArguments().getString("match_id")).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Singleplayer athlete = documentSnapshot.toObject(Singleplayer.class);
+                    Map<String, Integer> athlete_id_score = new HashMap<>(athlete.getAthlete_id_score());
+                    Set set = athlete_id_score.entrySet();
+                    Iterator itr=set.iterator();
+                    while (itr.hasNext()) {
+                        TextView a = new TextView(c);
+                        Map.Entry entry=(Map.Entry)itr.next();
+                        a.setText(entry.getKey()+":"+entry.getValue());
+                        id_score_layout.addView(a);
+                    }
+                }
+            });
         }
         return root;
     }
