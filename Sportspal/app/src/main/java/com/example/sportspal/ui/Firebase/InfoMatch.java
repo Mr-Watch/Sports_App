@@ -62,14 +62,14 @@ public class InfoMatch extends Fragment {
             }
         });
 
-
+        Match_id_textView = root.findViewById(R.id.Match_id_textView);
         Country_textView = root.findViewById(R.id.Country_textView);
         City_textView = root.findViewById(R.id.City_textView);
         Date_textView = root.findViewById(R.id.Date_textView);
         Sport_id_textView = root.findViewById(R.id.Sport_id_textView);
 
 
-
+        Match_id_textView.setText(getArguments().getString("match_id"));
         Country_textView.setText(getArguments().getString("country"));
         City_textView.setText(getArguments().getString("city"));
         Date_textView.setText(getArguments().getString("date"));
