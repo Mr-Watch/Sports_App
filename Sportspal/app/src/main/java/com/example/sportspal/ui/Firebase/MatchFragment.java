@@ -42,13 +42,10 @@ public class MatchFragment extends Fragment implements  MatchAdapter.ListItemCli
     private MatchViewModel matchViewModel;
     private CollectionReference matchesref = MainActivity.db.collection("Matches");
     private MatchAdapter matchAdapter;
-    private FloatingActionButton fab2;
     private View view;
     private Query query;
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_match, container, false);
-        fab2 = view.findViewById(R.id.add_match_button);
 
         if(getArguments() != null){
 
@@ -65,13 +62,6 @@ public class MatchFragment extends Fragment implements  MatchAdapter.ListItemCli
                 .build();
 
         matchAdapter = new MatchAdapter(options,this);
-        fab2.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.add_match);
-            }
-        });
 
 
         RecyclerView matchRecyclerView = view.findViewById(R.id.match_recyclerview);
