@@ -1,6 +1,6 @@
 package Adapters;
 
-import android.service.autofill.FieldClassification;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import Database.Classes.Team;
+
 
 
 public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter.MatchHolder> {
@@ -52,17 +52,7 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
         holder.textViewCountry.setText(model.getCountry());
     }
 
-/*    @Override
-    public int getItemCount() {
-        return matches.size();
-    }
-    public void setMatches(List<Matches> matches) {
-        this.matches = matches;
-        notifyDataSetChanged();
-    }
-    public Matches getMatches(int position) {
-        return matches.get(position);
-    }*/
+
     class MatchHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         private TextView textViewMatch_id;
         private TextView textViewMatchdate;
@@ -93,7 +83,4 @@ public class MatchAdapter extends FirestoreRecyclerAdapter<Matches, MatchAdapter
         void onListItemClick(int position);
     }
 
-    /*public void ListItemClickListener(ListItemClickListener listener){
-        mlistener = listener;
-    }*/
 }
