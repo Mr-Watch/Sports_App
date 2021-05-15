@@ -5,60 +5,55 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.RoomQueries.RoomQuery3;
-import com.example.sportspal.ui.Team.TeamStats;
-import com.example.sportspal.ui.Team.TeamViewModel;
+import com.example.sportspal.ui.Firebase.MatchFragment;
 
-    public class FirebaseQuery3  extends Fragment {
-        public FirebaseQuery3 () {
-            // Required empty public constructor
-        }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            View root = inflater.inflate(R.layout.fragment_room_query_3, container, false);
-            TeamViewModel model = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
 
-            Button queryButton = root.findViewById(R.id.room_query_3_button);
-            TextView countAboveTextView = root.findViewById(R.id.room_query_3_above_textView);
-            TextView countBelowTextView = root.findViewById(R.id.room_query_3_below_textView);
-            TextView countEqualTextView = root.findViewById(R.id.room_query_3_equal_textView);
-            TextView countAverageTextView = root.findViewById(R.id.room_query_3_average_textView);
-            TextView yearEditText = root.findViewById(R.id.room_query_3_year_editTextNumber);
+public class FirebaseQuery3 extends Fragment {
+    public FirebaseQuery3() {
+        // Required empty public constructor
+    }
 
-            queryButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        int year = Integer.parseInt(yearEditText.getText().toString());
-                        model.getTeamStats(year).observe(getViewLifecycleOwner(), new Observer<TeamStats>() {
-                            @Override
-                            public void onChanged(TeamStats teamStats) {
-                                countAboveTextView.setText(Integer.toString(teamStats.getCountAbove()));
-                                countBelowTextView.setText(Integer.toString(teamStats.getCountBelow()));
-                                countEqualTextView.setText(Integer.toString(teamStats.getCountEqual()));
-                                countAverageTextView.setText(Float.toString(teamStats.getCountAverage()));
-                            }
-                        });
-                    } catch (NumberFormatException ex) {
-                        Toast.makeText(getContext(), "No empty fields allowed", Toast.LENGTH_SHORT).show();
-                    }
+    public static com.example.sportspal.ui.FirebaseQueries.FirebaseQuery3 newInstance(){
+        return new com.example.sportspal.ui.FirebaseQueries.FirebaseQuery3();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View root = inflater.inflate(R.layout.fragment_firebase_query_3, container, false);
+        Button queryButton = root.findViewById(R.id.firebase_query_3_button);
+        TextView team1TextView = root.findViewById(R.id.firebase_query_3_team1_editTextNumber);
+        TextView team2TextView = root.findViewById(R.id.firebase_query_3_team2_editTextNumber);
+
+        queryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    Bundle bundle = new Bundle();
+                    int team1 = Integer.parseInt(team1TextView.getText().toString());
+                    int team2 = Integer.parseInt(team2TextView.getText().toString());
+                    bundle.putInt("query_team1", team1);
+                    bundle.putInt("query_team2", team2);
+                    MatchFragment matchFragment = new MatchFragment();
+                    matchFragment.setArguments(bundle);
+                    getChildFragmentManager().beginTransaction().replace(R.id.firebase_query_3_fragmentContainerView,
+                            matchFragment).commit();
+
+                }catch (NumberFormatException ex) {
+                    Toast.makeText(getContext(), "No empty fields allowed", Toast.LENGTH_SHORT).show();
                 }
-            });
-            return root;
-        }
-
-        public Fragment newInstance() {
-            return new com.example.sportspal.ui.RoomQueries.RoomQuery3();
-        }
+            }
+        });
+        return root;
+    }
 }

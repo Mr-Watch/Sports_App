@@ -1,4 +1,4 @@
-package com.example.sportspal.ui.Firebase;
+package Database.FireBase;
 
 import android.widget.Toast;
 
