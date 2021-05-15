@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,32 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sportspal.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
-
 import Adapters.AthleteAdapter;
 import Database.Classes.Athlete;
 
-
 public class AthleteFragment extends Fragment implements AthleteAdapter.ListItemClickListener {
-
-    private AthleteViewModel athleteViewModel;
     private AthleteAdapter athleteAdapter;
-    private FloatingActionButton fab1;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        athleteViewModel =
-                new ViewModelProvider(this).get(AthleteViewModel.class);
+        AthleteViewModel athleteViewModel = new ViewModelProvider(this).get(AthleteViewModel.class);
         root = inflater.inflate(R.layout.fragment_athlete, container, false);
-        fab1 = root.findViewById(R.id.athlete_fab);
-        System.out.println(container);
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.add_athlete);
-            }
-        });
+        FloatingActionButton fab1 = root.findViewById(R.id.athlete_fab);
+        fab1.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.add_athlete));
         RecyclerView athleteRecyclerView = root.findViewById(R.id.athlete_recyclerview);
         athleteRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         athleteRecyclerView.setHasFixedSize(true);
@@ -49,22 +35,12 @@ public class AthleteFragment extends Fragment implements AthleteAdapter.ListItem
         athleteAdapter = new AthleteAdapter(this);
         athleteRecyclerView.setAdapter(athleteAdapter);
         if (getArguments() != null) {
-            athleteViewModel.getAthletesBasedOnGender(getArguments().getString("query_gender")).
-            observe(getViewLifecycleOwner(), new Observer<List<Athlete>>() {
-                @Override
-                public void onChanged(List<Athlete> athletes) {
-                    athleteAdapter.setAthletes(athletes);
-                }
-            });
+            athleteViewModel.getAthletesBasedOnGender(getArguments().getString("query_gender"))
+                    .observe(getViewLifecycleOwner(), athletes -> athleteAdapter.setAthletes(athletes));
         } else {
-            athleteViewModel.getAllAthletes().observe(getViewLifecycleOwner(), new Observer<List<Athlete>>() {
-                @Override
-                public void onChanged(List<Athlete> athletes) {
-                    athleteAdapter.setAthletes(athletes);
-                }
-            });
+            athleteViewModel.getAllAthletes()
+                    .observe(getViewLifecycleOwner(), athletes -> athleteAdapter.setAthletes(athletes));
         }
-
         return root;
     }
 

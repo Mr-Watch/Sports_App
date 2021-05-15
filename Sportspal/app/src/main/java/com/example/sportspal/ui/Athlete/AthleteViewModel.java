@@ -11,9 +11,8 @@ import Database.Classes.Athlete;
 import Repositories.AthleteRepository;
 
 public class AthleteViewModel extends AndroidViewModel {
-    private AthleteRepository mRepository;
-    private LiveData<List<Athlete>> mAthletes;
-
+    private final AthleteRepository mRepository;
+    private final LiveData<List<Athlete>> mAthletes;
 
     public AthleteViewModel(Application application) {
         super(application);
@@ -40,5 +39,4 @@ public class AthleteViewModel extends AndroidViewModel {
     public void updateAthletes(Athlete... athletes) {
         mRepository.updateAthlete(athletes);
     }
-
 }

@@ -4,13 +4,13 @@ import androidx.room.ColumnInfo;
 
 public class TeamStats {
     @ColumnInfo(name = "count_above")
-    private int countAbove;
+    private final int countAbove;
     @ColumnInfo(name = "count_below")
-    private int countBelow;
+    private final int countBelow;
     @ColumnInfo(name = "count_equal")
-    private int countEqual;
+    private final int countEqual;
     @ColumnInfo(name = "count_average")
-    private float countAverage;
+    private final float countAverage;
 
     public TeamStats(int countAbove, int countBelow, int countEqual, float countAverage) {
         this.countAbove = countAbove;
@@ -23,31 +23,15 @@ public class TeamStats {
         return countAbove;
     }
 
-    public void setCountAbove(int countAbove) {
-        this.countAbove = countAbove;
-    }
-
     public int getCountBelow() {
         return countBelow;
-    }
-
-    public void setCountBelow(int countBelow) {
-        this.countBelow = countBelow;
     }
 
     public int getCountEqual() {
         return countEqual;
     }
 
-    public void setCountEqual(int countEqual) {
-        this.countEqual = countEqual;
-    }
-
     public float getCountAverage() {
         return Math.round(countAverage);
-    }
-
-    public void setCountAverage(float countAverage) {
-        this.countAverage = countAverage;
     }
 }

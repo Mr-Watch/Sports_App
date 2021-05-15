@@ -99,29 +99,29 @@ class Teambased extends Matches{
     }
     public void setTeam_id1(int Team_id1) {
         this.Team_id1 = Team_id1;
-    }    
-    
+    }
+
     public int getTeam_id2() {
         return Team_id2;
     }
     public void setTeam_id2(int Team_id2) {
         this.Team_id2 = Team_id2;
     }
-    
+
     public int getScore1() {
         return Score1;
     }
     public void setScore1(int Score1) {
         this.Score1 = Score1;
     }
-    
+
     public int getScore2() {
         return Score2;
     }
     public void setScore2(int Score2) {
         this.Score2 = Score2;
     }
-    
+
 }
 class Singleplayer extends Matches{
     private Map<String, Integer> athlete_id_score = new HashMap<>();

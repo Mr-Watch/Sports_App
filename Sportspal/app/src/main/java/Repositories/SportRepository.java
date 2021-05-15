@@ -12,15 +12,14 @@ import Database.Interfaces.SportDao;
 import Database.SportpalDatabase;
 
 public class SportRepository {
-    private SportDao mSportDao;
-    private LiveData<List<Sport>> mSports;
+    private final SportDao mSportDao;
+    private final LiveData<List<Sport>> mSports;
 
     public SportRepository(Application application) {
         SportpalDatabase db = SportpalDatabase.getDatabase(application);
         mSportDao = db.sportDao();
         mSports = mSportDao.getAllSports();
     }
-
 
     public LiveData<List<Sport>> getAllSports() {
         return mSports;
@@ -38,8 +37,8 @@ public class SportRepository {
         new updateAsyncTask(mSportDao).execute(sports);
     }
 
-    private class deleteAsyncTask extends AsyncTask<Sport, Void, Void> {
-        private SportDao mAsyncTaskDao;
+    private static class deleteAsyncTask extends AsyncTask<Sport, Void, Void> {
+        private final SportDao mAsyncTaskDao;
 
         deleteAsyncTask(SportDao dao) {
             mAsyncTaskDao = dao;
@@ -52,8 +51,8 @@ public class SportRepository {
         }
     }
 
-    private class insertAsyncTask extends AsyncTask<Sport, Void, Void> {
-        private SportDao mAsyncTaskDao;
+    private static class insertAsyncTask extends AsyncTask<Sport, Void, Void> {
+        private final SportDao mAsyncTaskDao;
 
         insertAsyncTask(SportDao dao) {
             mAsyncTaskDao = dao;
@@ -66,8 +65,8 @@ public class SportRepository {
         }
     }
 
-    private class updateAsyncTask extends AsyncTask<Sport, Void, Void> {
-        private SportDao mAsyncTaskDao;
+    private static class updateAsyncTask extends AsyncTask<Sport, Void, Void> {
+        private final SportDao mAsyncTaskDao;
 
         updateAsyncTask(SportDao dao) {
             mAsyncTaskDao = dao;

@@ -15,13 +15,13 @@ public class Sport {
 
     @PrimaryKey
     @ColumnInfo(name = "sport_id")
-    private int sportId;
+    private final int sportId;
     @ColumnInfo(name = "sport_name")
-    private String sportName;
+    private final String sportName;
     @ColumnInfo(name = "sport_type")
-    private String sportType;
+    private final String sportType;
     @ColumnInfo(name = "sport_gender")
-    private String sportGender;
+    private final String sportGender;
 
     public Sport(int sportId,
                  String sportName,
@@ -37,31 +37,15 @@ public class Sport {
         return sportId;
     }
 
-    public void setSportId(int sportId) {
-        this.sportId = sportId;
-    }
-
     public String getSportName() {
         return sportName;
-    }
-
-    public void setSportName(String sportName) {
-        this.sportName = sportName;
     }
 
     public String getSportType() {
         return sportType;
     }
 
-    public void setSportType(String sportType) {
-        this.sportType = sportType;
-    }
-
     public String getSportGender() {
         return sportGender;
-    }
-
-    public void setSportGender(String sportGender) {
-        this.sportGender = sportGender;
     }
 }

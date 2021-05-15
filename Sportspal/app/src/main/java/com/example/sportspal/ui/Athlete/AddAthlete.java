@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -14,13 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sportspal.R;
 
-
 import Database.Classes.Athlete;
 
-
 public class AddAthlete extends Fragment {
-
-    private Button addAthlete;
     private EditText athlete_id_textField;
     private EditText athlete_firstname_textField;
     private EditText athlete_surname_textField;
@@ -32,16 +27,14 @@ public class AddAthlete extends Fragment {
     private Athlete athlete = null;
 
     public AddAthlete() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_add_athlete, container, false);
-        addAthlete = root.findViewById(R.id.add_athlete_button);
+        Button addAthlete = root.findViewById(R.id.add_athlete_button);
         athlete_id_textField = root.findViewById(R.id.athlete_id_textField);
         athlete_firstname_textField = root.findViewById(R.id.athlete_firstname_textField);
         athlete_surname_textField = root.findViewById(R.id.athlete_surname_textField);
@@ -52,14 +45,10 @@ public class AddAthlete extends Fragment {
 
         model = new ViewModelProvider(requireActivity()).get(AthleteViewModel.class);
 
-
         if (getArguments() == null) {
-            addAthlete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getAthlete();
-                    addAthleteToDataBase();
-                }
+            addAthlete.setOnClickListener(v -> {
+                getAthlete();
+                addAthleteToDataBase();
             });
         } else {
             athlete_id_textField.setEnabled(false);
@@ -74,12 +63,9 @@ public class AddAthlete extends Fragment {
 
             addAthlete.setText("Update");
 
-            addAthlete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getAthlete();
-                    updateAthlete();
-                }
+            addAthlete.setOnClickListener(v -> {
+                getAthlete();
+                updateAthlete();
             });
         }
         return root;
@@ -94,7 +80,6 @@ public class AddAthlete extends Fragment {
         String athlete_sport_id = athlete_sport_id_textField.getText().toString();
         String athlete_birth_year = athlete_birth_year_textField.getText().toString();
 
-
         if (athlete_id_string.isEmpty() || athlete_first_name.isEmpty() || athlete_surname.isEmpty() || athlete_city.isEmpty() || athlete_country.isEmpty() || athlete_sport_id.isEmpty() || athlete_birth_year.isEmpty()) {
             Toast.makeText(getContext(), "No empty fields allowed", Toast.LENGTH_SHORT).show();
             return;
@@ -103,14 +88,14 @@ public class AddAthlete extends Fragment {
         int athlete_id = Integer.parseInt(athlete_id_string);
         int athlete_Sport_id = Integer.parseInt(athlete_sport_id);
         int athlete_Birth_year = Integer.parseInt(athlete_birth_year);
-        athlete = new Athlete(athlete_id, athlete_first_name, athlete_surname, athlete_city,athlete_country,athlete_Sport_id,athlete_Birth_year);
+        athlete = new Athlete(athlete_id, athlete_first_name, athlete_surname, athlete_city, athlete_country, athlete_Sport_id, athlete_Birth_year);
     }
 
     private void addAthleteToDataBase() {
         if (athlete != null) {
             model.insertAthletes(athlete);
             Toast.makeText(getContext(), "Athlete added successfully", Toast.LENGTH_SHORT).show();
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         }
     }
 
@@ -118,7 +103,7 @@ public class AddAthlete extends Fragment {
         if (athlete != null) {
             model.updateAthletes(athlete);
             Toast.makeText(getContext(), "Athlete updated successfully", Toast.LENGTH_SHORT).show();
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         }
     }
 }

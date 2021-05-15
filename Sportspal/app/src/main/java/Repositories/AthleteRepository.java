@@ -12,9 +12,8 @@ import Database.Interfaces.AthleteDao;
 import Database.SportpalDatabase;
 
 public class AthleteRepository {
-    private AthleteDao mAthleteDao;
-    private LiveData<List<Athlete>> mAthletes;
-    private LiveData<List<Athlete>> mAthletesBasedOnGender;
+    private final AthleteDao mAthleteDao;
+    private final LiveData<List<Athlete>> mAthletes;
 
     public AthleteRepository(Application application) {
         SportpalDatabase db = SportpalDatabase.getDatabase(application);
@@ -31,19 +30,19 @@ public class AthleteRepository {
     }
 
     public void insertAthlete(Athlete... athletes) {
-        new AthleteRepository.insertAsyncTask(mAthleteDao).execute(athletes);
+        new insertAsyncTask(mAthleteDao).execute(athletes);
     }
 
     public void deleteAthlete(Athlete... athletes) {
-        new AthleteRepository.deleteAsyncTask(mAthleteDao).execute(athletes);
+        new deleteAsyncTask(mAthleteDao).execute(athletes);
     }
 
     public void updateAthlete(Athlete... athletes) {
-        new AthleteRepository.updateAsyncTask(mAthleteDao).execute(athletes);
+        new updateAsyncTask(mAthleteDao).execute(athletes);
     }
 
-    private class deleteAsyncTask extends AsyncTask<Athlete, Void, Void> {
-        private AthleteDao mAsyncTaskDao;
+    private static class deleteAsyncTask extends AsyncTask<Athlete, Void, Void> {
+        private final AthleteDao mAsyncTaskDao;
 
         deleteAsyncTask(AthleteDao dao) {
             mAsyncTaskDao = dao;
@@ -56,8 +55,8 @@ public class AthleteRepository {
         }
     }
 
-    private class insertAsyncTask extends AsyncTask<Athlete, Void, Void> {
-        private AthleteDao mAsyncTaskDao;
+    private static class insertAsyncTask extends AsyncTask<Athlete, Void, Void> {
+        private final AthleteDao mAsyncTaskDao;
 
         insertAsyncTask(AthleteDao dao) {
             mAsyncTaskDao = dao;
@@ -70,8 +69,8 @@ public class AthleteRepository {
         }
     }
 
-    private class updateAsyncTask extends AsyncTask<Athlete, Void, Void> {
-        private AthleteDao mAsyncTaskDao;
+    private static class updateAsyncTask extends AsyncTask<Athlete, Void, Void> {
+        private final AthleteDao mAsyncTaskDao;
 
         updateAsyncTask(AthleteDao dao) {
             mAsyncTaskDao = dao;

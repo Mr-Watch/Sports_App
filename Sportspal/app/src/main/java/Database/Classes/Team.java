@@ -7,6 +7,8 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 @Entity(tableName = "teams_table", foreignKeys = @ForeignKey(entity = Sport.class,
         parentColumns = "sport_id",
         childColumns = "team_sport_id",
@@ -16,30 +18,30 @@ import androidx.room.PrimaryKey;
 public class Team {
 
     @ColumnInfo(name = "team_id")
-    private int team_id;
+    private final int teamId;
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "team_name")
-    private String teamName;
+    private final String teamName;
     @ColumnInfo(name = "team_field_name")
-    private String teamFieldName;
+    private final String teamFieldName;
     @ColumnInfo(name = "team_city")
-    private String teamCity;
+    private final String teamCity;
     @ColumnInfo(name = "team_country")
-    private String teamCountry;
+    private final String teamCountry;
     @ColumnInfo(name = "team_sport_id")
-    private int teamSportId;
+    private final int teamSportId;
     @ColumnInfo(name = "team_birth_year")
-    private int teamBirthYear;
+    private final int teamBirthYear;
 
-    public Team(int team_id,
-                String teamName,
+    public Team(int teamId,
+                @NotNull String teamName,
                 String teamFieldName,
                 String teamCity,
                 String teamCountry,
                 int teamSportId,
                 int teamBirthYear) {
-        this.team_id = team_id;
+        this.teamId = teamId;
         this.teamName = teamName;
         this.teamFieldName = teamFieldName;
         this.teamCity = teamCity;
@@ -48,59 +50,32 @@ public class Team {
         this.teamBirthYear = teamBirthYear;
     }
 
-    public int getTeam_id() {
-        return team_id;
+    public int getTeamId() {
+        return teamId;
     }
 
-    public void setTeam_id(int team_id) {
-        this.team_id = team_id;
-    }
-
+    @NotNull
     public String getTeamName() {
         return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
     }
 
     public String getTeamFieldName() {
         return teamFieldName;
     }
 
-    public void setTeamFieldName(String teamFieldName) {
-        this.teamFieldName = teamFieldName;
-    }
-
     public String getTeamCity() {
         return teamCity;
-    }
-
-    public void setTeamCity(String teamCity) {
-        this.teamCity = teamCity;
     }
 
     public String getTeamCountry() {
         return teamCountry;
     }
 
-    public void setTeamCountry(String teamCountry) {
-        this.teamCountry = teamCountry;
-    }
-
     public int getTeamSportId() {
         return teamSportId;
     }
 
-    public void setTeamSportId(int teamSportId) {
-        this.teamSportId = teamSportId;
-    }
-
     public int getTeamBirthYear() {
         return teamBirthYear;
-    }
-
-    public void setTeamBirthYear(int teamBirthYear) {
-        this.teamBirthYear = teamBirthYear;
     }
 }

@@ -18,7 +18,7 @@
             android:title="@string/menu_team" />
         <item
             android:id="@+id/nav_match"
-            android:icon="@drawable/ic_baseline_sports_handball_24"
+            android:icon="@drawable/ic_baseline_emoji_events_24"
             android:title="@string/menu_firebase" />
 
     </group>
@@ -28,15 +28,12 @@
             android:icon="@drawable/ic_baseline_search_24"
             android:title="@string/menu_room_queries" />
         <item
+            android:id="@+id/nav_firebase_queries"
+            android:icon="@drawable/ic_baseline_youtube_searched_for_24"
+            android:title="@string/menu_firebase_queries" />
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_baseline_info_24"
             android:title="@string/menu_about" />
-    </group>
-    <group>
-        <item
-            android:id="@+id/nav_firebase_queries"
-            android:icon="@drawable/ic_baseline_search_24"
-            android:title="@string/menu_firebase_queries" />
-
     </group>
 </menu>

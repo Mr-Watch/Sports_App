@@ -11,8 +11,8 @@ import Database.Classes.Team;
 import Repositories.TeamsRepository;
 
 public class TeamViewModel extends AndroidViewModel {
-    private TeamsRepository mRepository;
-    private LiveData<List<Team>> mTeams;
+    private final TeamsRepository mRepository;
+    private final LiveData<List<Team>> mTeams;
 
     public TeamViewModel(Application application) {
         super(application);

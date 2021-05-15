@@ -13,63 +13,37 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Athlete.AthleteViewModel;
 
 import Database.Classes.Athlete;
 
-
 public class InfoAthlete extends Fragment {
-    private View root;
-    private TextView athlete_firstname_textView;
-    private TextView athlete_id_textView;
-    private TextView athlete_surname_textView;
-    private TextView athlete_city_textView;
-    private TextView athlete_country_textView;
-    private TextView athlete_sport_id_textView;
-    private TextView athlete_birth_year_textView;
-
-    private Button deleteAthlete;
-    private Button updateAthlete;
-
     private AthleteViewModel model;
 
     public InfoAthlete() {
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_info_athlete, container, false);
+        View root = inflater.inflate(R.layout.fragment_info_athlete, container, false);
         model = new ViewModelProvider(requireActivity()).get(AthleteViewModel.class);
 
-        deleteAthlete = root.findViewById(R.id.athlete_delete_button);
-        updateAthlete = root.findViewById(R.id.athlete_update_button);
+        Button deleteAthlete = root.findViewById(R.id.athlete_delete_button);
+        Button updateAthlete = root.findViewById(R.id.athlete_update_button);
 
-        deleteAthlete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteAthleteFromDataBase();
-            }
-        });
+        deleteAthlete.setOnClickListener(v -> deleteAthleteFromDataBase());
 
-        updateAthlete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAthleteFromDatabase(v);
-            }
-        });
+        updateAthlete.setOnClickListener(this::updateAthleteFromDatabase);
 
-        athlete_firstname_textView = root.findViewById(R.id.athlete_firstname_textView);
-        athlete_id_textView = root.findViewById(R.id.athlete_id_textView);
-        athlete_surname_textView = root.findViewById(R.id.athlete_surname_textView);
-        athlete_city_textView = root.findViewById(R.id.athlete_city_textView);
-        athlete_country_textView = root.findViewById(R.id.athlete_country_textView);
-        athlete_sport_id_textView = root.findViewById(R.id.athlete_sport_id_textView);
-        athlete_birth_year_textView = root.findViewById(R.id.athlete_birth_year_textView);
+        TextView athlete_firstname_textView = root.findViewById(R.id.athlete_firstname_textView);
+        TextView athlete_id_textView = root.findViewById(R.id.athlete_id_textView);
+        TextView athlete_surname_textView = root.findViewById(R.id.athlete_surname_textView);
+        TextView athlete_city_textView = root.findViewById(R.id.athlete_city_textView);
+        TextView athlete_country_textView = root.findViewById(R.id.athlete_country_textView);
+        TextView athlete_sport_id_textView = root.findViewById(R.id.athlete_sport_id_textView);
+        TextView athlete_birth_year_textView = root.findViewById(R.id.athlete_birth_year_textView);
 
+        assert getArguments() != null;
         athlete_firstname_textView.setText(getArguments().getString("athlete_first_name"));
         athlete_id_textView.setText(Integer.toString(getArguments().getInt("athlete_id")));
         athlete_surname_textView.setText(getArguments().getString("athlete_surname"));
@@ -86,6 +60,7 @@ public class InfoAthlete extends Fragment {
     }
 
     private void deleteAthleteFromDataBase() {
+        assert getArguments() != null;
         Athlete athlete = new Athlete(
                 getArguments().getInt("athlete_id"),
                 getArguments().getString("athlete_first_name"),
@@ -96,9 +71,7 @@ public class InfoAthlete extends Fragment {
                 getArguments().getInt("athlete_birth_year")
         );
         model.deleteAthletes(athlete);
-
         Toast.makeText(getContext(), "Athlete Removed", Toast.LENGTH_SHORT).show();
-        getActivity().onBackPressed();
+        requireActivity().onBackPressed();
     }
-
 }

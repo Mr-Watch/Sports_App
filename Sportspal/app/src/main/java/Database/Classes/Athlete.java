@@ -16,19 +16,19 @@ public class Athlete {
 
     @PrimaryKey
     @ColumnInfo(name = "athlete_id")
-    private int athleteId;
+    private final int athleteId;
     @ColumnInfo(name = "athlete_first_name")
-    private String athleteFirstName;
+    private final String athleteFirstName;
     @ColumnInfo(name = "athlete_surname")
-    private String athleteSurname;
+    private final String athleteSurname;
     @ColumnInfo(name = "athlete_city")
-    private String athleteCity;
+    private final String athleteCity;
     @ColumnInfo(name = "athlete_country")
-    private String athleteCountry;
+    private final String athleteCountry;
     @ColumnInfo(name = "athlete_sport_id")
-    private int athleteSportId;
+    private final int athleteSportId;
     @ColumnInfo(name = "athlete_birth_year")
-    private int athleteBirthYear;
+    private final int athleteBirthYear;
 
     public Athlete(int athleteId,
                    String athleteFirstName,
@@ -50,55 +50,27 @@ public class Athlete {
         return athleteId;
     }
 
-    public void setAthleteId(int athleteId) {
-        this.athleteId = athleteId;
-    }
-
     public String getAthleteFirstName() {
         return athleteFirstName;
-    }
-
-    public void setAthleteFirstName(String athleteFirstName) {
-        this.athleteFirstName = athleteFirstName;
     }
 
     public String getAthleteSurname() {
         return athleteSurname;
     }
 
-    public void setAthleteSurname(String athleteSurname) {
-        this.athleteSurname = athleteSurname;
-    }
-
     public String getAthleteCity() {
         return athleteCity;
-    }
-
-    public void setAthleteCity(String athleteCity) {
-        this.athleteCity = athleteCity;
     }
 
     public String getAthleteCountry() {
         return athleteCountry;
     }
 
-    public void setAthleteCountry(String athleteCountry) {
-        this.athleteCountry = athleteCountry;
-    }
-
     public int getAthleteSportId() {
         return athleteSportId;
     }
 
-    public void setAthleteSportId(int athleteSportId) {
-        this.athleteSportId = athleteSportId;
-    }
-
     public int getAthleteBirthYear() {
         return athleteBirthYear;
-    }
-
-    public void setAthleteBirthYear(int athleteBirthYear) {
-        this.athleteBirthYear = athleteBirthYear;
     }
 }

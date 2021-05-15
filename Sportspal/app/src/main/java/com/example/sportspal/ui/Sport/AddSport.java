@@ -19,7 +19,6 @@ import Database.Classes.Sport;
 
 
 public class AddSport extends Fragment {
-    private Button addSport;
     private EditText sport_id_textField;
     private EditText sport_name_textField;
     private RadioGroup sport_gender_radioGroup;
@@ -28,16 +27,14 @@ public class AddSport extends Fragment {
     private Sport sport = null;
 
     public AddSport() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_add_sport, container, false);
-        addSport = root.findViewById(R.id.add_sport_button);
+        Button addSport = root.findViewById(R.id.add_sport_button);
         sport_id_textField = root.findViewById(R.id.sport_id_textField);
         sport_name_textField = root.findViewById(R.id.sport_name_textField);
         sport_gender_radioGroup = root.findViewById(R.id.sport_gender_radioGroup);
@@ -45,14 +42,10 @@ public class AddSport extends Fragment {
 
         model = new ViewModelProvider(requireActivity()).get(SportViewModel.class);
 
-
         if (getArguments() == null) {
-            addSport.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getSport();
-                    addSportToDataBase();
-                }
+            addSport.setOnClickListener(v -> {
+                getSport();
+                addSportToDataBase();
             });
         } else {
             sport_id_textField.setEnabled(false);
@@ -73,12 +66,9 @@ public class AddSport extends Fragment {
 
             addSport.setText("Update");
 
-            addSport.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getSport();
-                    updateSport();
-                }
+            addSport.setOnClickListener(v -> {
+                getSport();
+                updateSport();
             });
         }
         return root;
@@ -90,8 +80,8 @@ public class AddSport extends Fragment {
         int selected_gender_id = sport_gender_radioGroup.getCheckedRadioButtonId();
         int selected_type_id = sport_type_radioGroup.getCheckedRadioButtonId();
 
-        RadioButton selected_gender_button = getView().findViewById(selected_gender_id);
-        RadioButton selected_type_button = getView().findViewById(selected_type_id);
+        RadioButton selected_gender_button = requireView().findViewById(selected_gender_id);
+        RadioButton selected_type_button = requireView().findViewById(selected_type_id);
 
         String sport_gender = selected_gender_button.getText().toString();
         String sport_type = selected_type_button.getText().toString();
@@ -109,7 +99,7 @@ public class AddSport extends Fragment {
         if (sport != null) {
             model.insertSports(sport);
             Toast.makeText(getContext(), "Sport added successfully", Toast.LENGTH_SHORT).show();
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         }
     }
 
@@ -117,7 +107,7 @@ public class AddSport extends Fragment {
         if (sport != null) {
             model.updateSports(sport);
             Toast.makeText(getContext(), "Sport updated successfully", Toast.LENGTH_SHORT).show();
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         }
     }
 }

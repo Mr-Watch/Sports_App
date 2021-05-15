@@ -11,7 +11,6 @@ import androidx.room.Update;
 import java.util.List;
 
 import Database.Classes.Athlete;
-import Database.Classes.Sport;
 
 @Dao
 public interface AthleteDao {

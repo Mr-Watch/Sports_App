@@ -22,8 +22,7 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteH
 
     public AthleteAdapter(AthleteAdapter.ListItemClickListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
-}
-
+    }
 
     @NonNull
     @Override
@@ -60,11 +59,11 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteH
     }
 
     class AthleteHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView textViewAthleteName;
-        private TextView textViewAthleteSurname;
-        private TextView textViewCountry;
+        private final TextView textViewAthleteName;
+        private final TextView textViewAthleteSurname;
+        private final TextView textViewCountry;
 
-        public AthleteHolder (@NonNull View itemView) {
+        public AthleteHolder(@NonNull View itemView) {
             super(itemView);
             textViewAthleteName = itemView.findViewById(R.id.athlete_firstname_recyclerView);
             textViewAthleteSurname = itemView.findViewById(R.id.athlete_surname_recyclerView);

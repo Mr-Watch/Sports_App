@@ -15,15 +15,14 @@ import Database.Interfaces.TeamDao;
 import Database.SportpalDatabase;
 
 public class TeamsRepository {
-    private TeamDao mTeamDao;
-    private LiveData<List<Team>> mTeams;
+    private final TeamDao mTeamDao;
+    private final LiveData<List<Team>> mTeams;
 
     public TeamsRepository(Application application) {
         SportpalDatabase db = SportpalDatabase.getDatabase(application);
         mTeamDao = db.teamDao();
         mTeams = mTeamDao.getAllTeams();
     }
-
 
     public LiveData<List<Team>> getAllTeams() {
         return mTeams;
@@ -36,38 +35,21 @@ public class TeamsRepository {
     public LiveData<TeamStats> getTeamStats(int year) {
         return mTeamDao.getTeamStats(year);
     }
-//    public void getTeamStats(int year) {
-//        new TeamsRepository.getTeamStatsAsyncTask(mTeamDao).execute(year);
-//    }
-//
-//    private class getTeamStatsAsyncTask extends AsyncTask<Integer, Void, TeamStats> {
-//        private TeamDao mAsyncTaskDao;
-//
-//        getTeamStatsAsyncTask(TeamDao dao) {
-//            mAsyncTaskDao = dao;
-//        }
-//
-//        @Override
-//        protected TeamStats doInBackground(Integer... integers) {
-//            return mAsyncTaskDao.getTeamStats(integers[0]);
-//        }
-//    }
-
 
     public void insertTeams(Team... teams) {
-        new TeamsRepository.insertAsyncTask(mTeamDao).execute(teams);
+        new insertAsyncTask(mTeamDao).execute(teams);
     }
 
     public void deleteTeams(Team... teams) {
-        new TeamsRepository.deleteAsyncTask(mTeamDao).execute(teams);
+        new deleteAsyncTask(mTeamDao).execute(teams);
     }
 
     public void updateTeams(Team... teams) {
-        new TeamsRepository.updateAsyncTask(mTeamDao).execute(teams);
+        new updateAsyncTask(mTeamDao).execute(teams);
     }
 
-    private class deleteAsyncTask extends AsyncTask<Team, Void, Void> {
-        private TeamDao mAsyncTaskDao;
+    private static class deleteAsyncTask extends AsyncTask<Team, Void, Void> {
+        private final TeamDao mAsyncTaskDao;
 
         deleteAsyncTask(TeamDao dao) {
             mAsyncTaskDao = dao;
@@ -80,8 +62,8 @@ public class TeamsRepository {
         }
     }
 
-    private class insertAsyncTask extends AsyncTask<Team, Void, Void> {
-        private TeamDao mAsyncTaskDao;
+    private static class insertAsyncTask extends AsyncTask<Team, Void, Void> {
+        private final TeamDao mAsyncTaskDao;
 
         insertAsyncTask(TeamDao dao) {
             mAsyncTaskDao = dao;
@@ -94,8 +76,8 @@ public class TeamsRepository {
         }
     }
 
-    private class updateAsyncTask extends AsyncTask<Team, Void, Void> {
-        private TeamDao mAsyncTaskDao;
+    private static class updateAsyncTask extends AsyncTask<Team, Void, Void> {
+        private final TeamDao mAsyncTaskDao;
 
         updateAsyncTask(TeamDao dao) {
             mAsyncTaskDao = dao;

@@ -11,10 +11,8 @@ import androidx.room.Update;
 import com.example.sportspal.ui.Team.TeamCount;
 import com.example.sportspal.ui.Team.TeamStats;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import Database.Classes.Sport;
 import Database.Classes.Team;
 
 @Dao

@@ -11,8 +11,8 @@ import Database.Classes.Sport;
 import Repositories.SportRepository;
 
 public class SportViewModel extends AndroidViewModel {
-    private SportRepository mRepository;
-    private LiveData<List<Sport>> mSports;
+    private final SportRepository mRepository;
+    private final LiveData<List<Sport>> mSports;
 
     public SportViewModel(Application application) {
         super(application);

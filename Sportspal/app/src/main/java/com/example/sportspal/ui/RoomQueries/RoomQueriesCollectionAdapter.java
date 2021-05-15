@@ -27,6 +27,7 @@ public class RoomQueriesCollectionAdapter extends FragmentStateAdapter {
                 fragment = new RoomQuery3().newInstance();
                 break;
         }
+        assert fragment != null;
         return fragment;
     }
 

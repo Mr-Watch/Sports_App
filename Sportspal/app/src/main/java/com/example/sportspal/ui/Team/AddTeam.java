@@ -1,6 +1,5 @@
 package com.example.sportspal.ui.Team;
 
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,24 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.loader.content.Loader;
 
-import com.example.sportspal.MainActivity;
 import com.example.sportspal.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-
-import org.jetbrains.annotations.NotNull;
 
 import Database.Classes.Team;
 import Database.FireBase.TeamFB;
 
-public class AddTeam extends Fragment{
-    private Button addTeam;
+public class AddTeam extends Fragment {
     private EditText team_id_textField;
     private EditText team_name_textField;
     private EditText team_field_name_textField;
@@ -39,16 +29,14 @@ public class AddTeam extends Fragment{
     private TeamFB fDB = null;
 
     public AddTeam() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_add_team, container, false);
-        addTeam = root.findViewById(R.id.add_team_button);
+        Button addTeam = root.findViewById(R.id.add_team_button);
         team_id_textField = root.findViewById(R.id.team_id_textField);
         team_name_textField = root.findViewById(R.id.team_name_textField);
         team_field_name_textField = root.findViewById(R.id.team_field_name_textField);
@@ -61,12 +49,9 @@ public class AddTeam extends Fragment{
 
 
         if (getArguments() == null) {
-            addTeam.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getTeam();
-                    addTeamToDataBase();
-                }
+            addTeam.setOnClickListener(v -> {
+                getTeam();
+                addTeamToDataBase();
             });
 
 
@@ -82,12 +67,9 @@ public class AddTeam extends Fragment{
             team_birth_year_textField.setText(Integer.toString(getArguments().getInt("team_birth_year")));
 
             addTeam.setText("Update");
-            addTeam.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getTeam();
-                    updateTeam();
-                }
+            addTeam.setOnClickListener(v -> {
+                getTeam();
+                updateTeam();
             });
         }
         return root;
@@ -111,26 +93,26 @@ public class AddTeam extends Fragment{
         int team_id = Integer.parseInt(team_id_string);
         int team_Sport_id = Integer.parseInt(team_sport_id);
         int team_Birth_year = Integer.parseInt(team_birth_year);
-        team = new Team(team_id, team_name, team_field_name, team_city,team_country,team_Sport_id,team_Birth_year);
+        team = new Team(team_id, team_name, team_field_name, team_city, team_country, team_Sport_id, team_Birth_year);
     }
 
     private void addTeamToDataBase() {
         if (team != null) {
-            fDB= new TeamFB();
+            fDB = new TeamFB();
             fDB.insertTeamFS(team);
             model.insertTeam(team);
             Toast.makeText(getContext(), "Team added successfully", Toast.LENGTH_SHORT).show();
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         }
     }
 
     private void updateTeam() {
         if (team != null) {
-            fDB= new TeamFB();
+            fDB = new TeamFB();
             fDB.updateTeamFS(team);
             model.updateTeam(team);
             Toast.makeText(getContext(), "Team updated successfully", Toast.LENGTH_SHORT).show();
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         }
     }
 }

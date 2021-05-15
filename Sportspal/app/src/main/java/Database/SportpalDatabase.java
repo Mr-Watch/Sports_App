@@ -8,6 +8,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import org.jetbrains.annotations.NotNull;
+
 import Database.Classes.Athlete;
 import Database.Classes.Sport;
 import Database.Classes.Team;
@@ -22,10 +24,10 @@ import Database.Interfaces.TeamDao;
 
 public abstract class SportpalDatabase extends RoomDatabase {
     private static SportpalDatabase instance;
-    private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback() {
+    private static final RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback() {
 
         @Override
-        public void onCreate(SupportSQLiteDatabase db) {
+        public void onCreate(@NotNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             new PopulateDatabaseAsyncTask(instance).execute();
         }
@@ -53,9 +55,9 @@ public abstract class SportpalDatabase extends RoomDatabase {
     public abstract TeamDao teamDao();
 
     private static class PopulateDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
-        private SportDao sportDao;
-        private AthleteDao athleteDao;
-        private TeamDao teamDao;
+        private final SportDao sportDao;
+        private final AthleteDao athleteDao;
+        private final TeamDao teamDao;
 
         private PopulateDatabaseAsyncTask(SportpalDatabase db) {
             sportDao = db.sportDao();
@@ -76,5 +78,4 @@ public abstract class SportpalDatabase extends RoomDatabase {
             return null;
         }
     }
-
 }

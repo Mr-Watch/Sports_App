@@ -58,9 +58,9 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder> {
     }
 
     class TeamHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView textViewTeamName;
-        private TextView textViewTeamCity;
-        private TextView textViewTeamCountry;
+        private final TextView textViewTeamName;
+        private final TextView textViewTeamCity;
+        private final TextView textViewTeamCountry;
 
         public TeamHolder(@NonNull View itemView) {
             super(itemView);

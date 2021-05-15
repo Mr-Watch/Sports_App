@@ -8,15 +8,14 @@ import Database.Classes.Athlete;
 import Database.Classes.Sport;
 import Database.Classes.Team;
 
-
 public class DatabaseObjectGenerator {
-    private List<Sport> generatedSports = new ArrayList<>();
-    private List<Athlete> generatedAthletes = new ArrayList<>();
-    private List<Team> generatedTeams = new ArrayList<>();
-    private Random random = new Random();
-    private int numberOfSports;
-    private int numberOfAthletes;
-    private int numberOfTeams;
+    private final List<Sport> generatedSports = new ArrayList<>();
+    private final List<Athlete> generatedAthletes = new ArrayList<>();
+    private final List<Team> generatedTeams = new ArrayList<>();
+    private final Random random = new Random();
+    private final int numberOfSports;
+    private final int numberOfAthletes;
+    private final int numberOfTeams;
 
     public DatabaseObjectGenerator(int numberOfSports, int numberOfAthletes, int numberOfTeams) {
         this.numberOfSports = numberOfSports;
@@ -55,7 +54,7 @@ public class DatabaseObjectGenerator {
             String athleteCity = "athlete city " + i;
             String athleteCountry = "athlete country " + i;
             int athleteSportId = random.nextInt(numberOfSports - 1) + 1;
-            int athleteBirthYear = random.nextInt(1935 - 1880) + 1880;
+            int athleteBirthYear = random.nextInt(2005 - 1985) + 1985;
             generatedAthletes.add(new Athlete(
                     i,
                     athleteFirstName,
@@ -74,7 +73,7 @@ public class DatabaseObjectGenerator {
             String teamCity = "team city " + i;
             String teamCountry = "team country " + i;
             int teamSportId = random.nextInt(numberOfSports - 1) + 1;
-            int teamBirthYear = random.nextInt(1935 - 1880) + 1880;
+            int teamBirthYear = random.nextInt(1945 - 1880) + 1880;
             generatedTeams.add(new Team(
                     i,
                     teamFirstName,

@@ -57,8 +57,8 @@ public class SportAdapter extends RecyclerView.Adapter<SportAdapter.SportHolder>
     }
 
     class SportHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView textViewSportName;
-        private TextView textViewSportGender;
+        private final TextView textViewSportName;
+        private final TextView textViewSportGender;
 
         public SportHolder(@NonNull View itemView) {
             super(itemView);

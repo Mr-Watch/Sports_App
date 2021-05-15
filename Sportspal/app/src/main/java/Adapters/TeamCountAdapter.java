@@ -41,15 +41,15 @@ public class TeamCountAdapter extends RecyclerView.Adapter<TeamCountAdapter.Team
         return items.size();
     }
 
-    public void setItems(List<TeamCount> items){
+    public void setItems(List<TeamCount> items) {
         this.items = items;
         notifyDataSetChanged();
     }
 
-    class TeamCountHolder extends RecyclerView.ViewHolder {
-        private TextView textViewNumberOfTeams;
-        private TextView textViewSportName;
-        private TextView textViewSportId;
+    static class TeamCountHolder extends RecyclerView.ViewHolder {
+        private final TextView textViewNumberOfTeams;
+        private final TextView textViewSportName;
+        private final TextView textViewSportId;
 
         public TeamCountHolder(@NonNull @NotNull View itemView) {
             super(itemView);

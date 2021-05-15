@@ -17,57 +17,35 @@ import com.example.sportspal.R;
 import Database.Classes.Team;
 import Database.FireBase.TeamFB;
 
-public class InfoTeam extends Fragment{
-    private View root;
-    private TextView team_name_textView;
-    private TextView team_id_textView;
-    private TextView team_field_name_textView;
-    private TextView team_city_textView;
-    private TextView team_country_textView;
-    private TextView team_sport_id_textView;
-    private TextView team_birth_year_textView;
-    private Button deleteTeam;
-    private Button updateTeam;
-
+public class InfoTeam extends Fragment {
     private TeamViewModel model;
-    private TeamFB fDB=null;
 
     public InfoTeam() {
-        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_info_team, container, false);
+
+        View root = inflater.inflate(R.layout.fragment_info_team, container, false);
         model = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
 
-        deleteTeam = root.findViewById(R.id.team_delete_button);
-        updateTeam = root.findViewById(R.id.team_update_button);
+        Button deleteTeam = root.findViewById(R.id.team_delete_button);
+        Button updateTeam = root.findViewById(R.id.team_update_button);
 
-        deleteTeam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteTeamFromDataBase();
-            }
-        });
+        deleteTeam.setOnClickListener(v -> deleteTeamFromDataBase());
 
-        updateTeam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateTeamFromDatabase(v);
-            }
-        });
+        updateTeam.setOnClickListener(this::updateTeamFromDatabase);
 
-        team_name_textView = root.findViewById(R.id.team_name_textView);
-        team_id_textView = root.findViewById(R.id.team_id_textView);
-        team_field_name_textView = root.findViewById(R.id.team_field_name_textView);
-        team_city_textView = root.findViewById(R.id.team_city_textView);
-        team_country_textView = root.findViewById(R.id.team_country_textView);
-        team_sport_id_textView = root.findViewById(R.id.team_sport_id_textView);
-        team_birth_year_textView = root.findViewById(R.id.team_birth_year_textView);
+        TextView team_name_textView = root.findViewById(R.id.team_name_textView);
+        TextView team_id_textView = root.findViewById(R.id.team_id_textView);
+        TextView team_field_name_textView = root.findViewById(R.id.team_field_name_textView);
+        TextView team_city_textView = root.findViewById(R.id.team_city_textView);
+        TextView team_country_textView = root.findViewById(R.id.team_country_textView);
+        TextView team_sport_id_textView = root.findViewById(R.id.team_sport_id_textView);
+        TextView team_birth_year_textView = root.findViewById(R.id.team_birth_year_textView);
 
+        assert getArguments() != null;
         team_name_textView.setText(getArguments().getString("team_name"));
         team_id_textView.setText(Integer.toString(getArguments().getInt("team_id")));
         team_field_name_textView.setText(getArguments().getString("team_field_name"));
@@ -84,6 +62,7 @@ public class InfoTeam extends Fragment{
     }
 
     private void deleteTeamFromDataBase() {
+        assert getArguments() != null;
         Team team = new Team(
                 getArguments().getInt("team_id"),
                 getArguments().getString("team_name"),
@@ -93,11 +72,11 @@ public class InfoTeam extends Fragment{
                 getArguments().getInt("team_sport_id"),
                 getArguments().getInt("team_birth_year")
         );
-        fDB= new TeamFB();
+        TeamFB fDB = new TeamFB();
         fDB.deleteTeamFS(team);
         model.deleteTeam(team);
 
         Toast.makeText(getContext(), "Team Removed", Toast.LENGTH_SHORT).show();
-        getActivity().onBackPressed();
+        requireActivity().onBackPressed();
     }
 }

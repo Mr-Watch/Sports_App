@@ -6,24 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Athlete.AthleteViewModel;
-import com.example.sportspal.ui.Team.TeamCount;
 import com.example.sportspal.ui.Team.TeamViewModel;
-
-import java.util.List;
 
 import Adapters.TeamCountAdapter;
 
 public class RoomQuery2 extends Fragment {
     public RoomQuery2() {
-        // Required empty public constructor
     }
 
     public Fragment newInstance() {
@@ -33,7 +26,7 @@ public class RoomQuery2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View root = inflater.inflate(R.layout.fragment_room_query_2, container, false);
         TeamViewModel model = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
 
@@ -44,12 +37,8 @@ public class RoomQuery2 extends Fragment {
         TeamCountAdapter adapter = new TeamCountAdapter();
         recyclerView.setAdapter(adapter);
 
-        model.getTeamsCount().observe(getViewLifecycleOwner(), new Observer<List<TeamCount>>() {
-            @Override
-            public void onChanged(List<TeamCount> teamCounts) {
-                adapter.setItems(teamCounts);
-            }
-        });
+        model.getTeamsCount().observe(getViewLifecycleOwner(),
+                adapter::setItems);
 
         return root;
     }
