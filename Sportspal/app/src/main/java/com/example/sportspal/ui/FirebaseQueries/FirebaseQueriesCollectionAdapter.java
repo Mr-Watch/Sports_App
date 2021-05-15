@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-
-
 import org.jetbrains.annotations.NotNull;
 
 public class FirebaseQueriesCollectionAdapter extends FragmentStateAdapter {
@@ -29,6 +27,7 @@ public class FirebaseQueriesCollectionAdapter extends FragmentStateAdapter {
                 fragment = new FirebaseQuery3().newInstance();
                 break;
         }
+        assert fragment != null;
         return fragment;
     }
 
