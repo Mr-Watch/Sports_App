@@ -1,6 +1,5 @@
 package com.example.sportspal.ui.Firebase;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,77 +8,56 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportspal.MainActivity;
 import com.example.sportspal.R;
-import com.example.sportspal.ui.Athlete.AthleteViewModel;
-import com.example.sportspal.ui.Team.TeamViewModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
 import Adapters.MatchAdapter;
 
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.example.sportspal.MainActivity;
+public class MatchFragment extends Fragment implements MatchAdapter.ListItemClickListener {
 
-public class MatchFragment extends Fragment implements  MatchAdapter.ListItemClickListener{
-
-    private MatchViewModel matchViewModel;
-    private CollectionReference matchesref = MainActivity.db.collection("Matches");
+    private final CollectionReference matchesref = MainActivity.db.collection("Matches");
     private MatchAdapter matchAdapter;
-    private FloatingActionButton fab2;
     private View view;
     private Query query;
-    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_match, container, false);
-        fab2 = view.findViewById(R.id.add_match_button);
+        FloatingActionButton fab2 = view.findViewById(R.id.add_match_button);
 
-        if(getArguments() != null){
+        if (getArguments() != null) {
 
-            if(getArguments().getString("query_typeof") == null )
-            {
+            if (getArguments().getString("query_typeof") == null) {
 
-               query = matchesref.whereEqualTo("date", getArguments().getString("query_date"));
-               if(getArguments().getString("query_date") == null) {
-                   query = matchesref.whereEqualTo("team_id1", getArguments().getInt("query_team1")).whereEqualTo("team_id2",getArguments().getInt("query_team2") );
-               }
-            }
-            else if(getArguments().getString("query_date") == null) {
+                query = matchesref.whereEqualTo("date", getArguments().getString("query_date"));
+                if (getArguments().getString("query_date") == null) {
+                    query = matchesref.whereEqualTo("team_id1", getArguments().getInt("query_team1")).whereEqualTo("team_id2", getArguments().getInt("query_team2"));
+                }
+            } else if (getArguments().getString("query_date") == null) {
                 query = matchesref.whereEqualTo("typeof", getArguments().getString("query_typeof"));
             }
 
 
-
-        }else {
+        } else {
             query = matchesref.orderBy("country", Query.Direction.DESCENDING);
         }
         FirestoreRecyclerOptions<Matches> options = new FirestoreRecyclerOptions.Builder<Matches>()
                 .setQuery(query, Matches.class)
                 .build();
 
-        matchAdapter = new MatchAdapter(options,this);
-        fab2.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.add_match);
-            }
-        });
+        matchAdapter = new MatchAdapter(options, this);
+        fab2.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.add_match));
 
         RecyclerView matchRecyclerView = view.findViewById(R.id.match_recyclerview);
         matchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -91,15 +69,16 @@ public class MatchFragment extends Fragment implements  MatchAdapter.ListItemCli
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         matchAdapter.startListening();
     }
 
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         matchAdapter.stopListening();
     }
+
     public void onListItemClick(int position) {
 
         matchesref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -107,10 +86,9 @@ public class MatchFragment extends Fragment implements  MatchAdapter.ListItemCli
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 if (documentSnapshots.isEmpty()) {
                     Log.d(this.getClass().toString(), "onSuccess: LIST EMPTY");
-                    return;
                 } else {
                     List<Matches> matchesList = documentSnapshots.toObjects(Matches.class);
-                    Matches matches = matchesList.get(position) ;
+                    Matches matches = matchesList.get(position);
                     Bundle bundle = new Bundle();
                     bundle.putString("match_id", matches.getMatch_id());
                     bundle.putString("city", matches.getCity());
