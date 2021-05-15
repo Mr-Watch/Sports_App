@@ -52,12 +52,21 @@ public class MatchFragment extends Fragment implements  MatchAdapter.ListItemCli
 
         if(getArguments() != null){
 
-            if(getArguments().getString("query_typeof") == null ) {
-                query = matchesref.whereEqualTo("date", getArguments().getString("query_date"));
-            }else{
+            if(getArguments().getString("query_typeof") == null )
+            {
+
+               query = matchesref.whereEqualTo("date", getArguments().getString("query_date"));
+               if(getArguments().getString("query_date") == null) {
+                   query = matchesref.whereEqualTo("team_id1", getArguments().getInt("query_team1")).whereEqualTo("team_id2",getArguments().getInt("query_team2") );
+               }
+            }
+            else if(getArguments().getString("query_date") == null) {
                 query = matchesref.whereEqualTo("typeof", getArguments().getString("query_typeof"));
             }
-            }else {
+
+
+
+        }else {
             query = matchesref.orderBy("country", Query.Direction.DESCENDING);
         }
         FirestoreRecyclerOptions<Matches> options = new FirestoreRecyclerOptions.Builder<Matches>()
